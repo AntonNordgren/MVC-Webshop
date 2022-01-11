@@ -7,9 +7,10 @@ a {
     color: #008575;
 }
 
-a :hover {
-    color: black;
-}
+
+    a :hover {
+        color: black;
+    }
 
 body {
     background-color: #fff;
@@ -46,9 +47,9 @@ header {
     transform: translate(-50%, -50%);
 }
 
-.icon-container svg {
-    flex: 1;
-}
+    .icon-container svg {
+        flex: 1;
+    }
 
 footer {
     width: 100%;
@@ -61,7 +62,7 @@ footer {
     flex-direction: column;
 }
 
-.navbar-first-container{
+.navbar-first-container {
     width: 100%;
     display: flex;
 }
