@@ -32,6 +32,17 @@ namespace MVC_Webshop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //dependency injection 
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+
+          
+             services.AddDbContext<BookStoreDbContext>(
+                options => options.UseSqlServer(
+                    Configuration.GetConnectionString("BookStoreDbContext")));
+             
+
             // Register the services 
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -42,14 +53,12 @@ namespace MVC_Webshop
             services.AddMvc().AddSessionStateTempDataProvider();
             services.AddSession();
             services.AddRazorPages();
-            
+
 
             //dependency injection  
             // dependencies which will be used later with Identity and DbContext
             /*
-            services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddDefaultUI().AddDefaultTokenProviders().AddEntityFrameworkStores<ApplicationDbContext>();
@@ -93,6 +102,7 @@ namespace MVC_Webshop
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
             RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
         }
     }
