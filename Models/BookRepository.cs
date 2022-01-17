@@ -25,7 +25,15 @@ namespace MVC_Webshop.Models
             get
             {
                 return _bookStoreDbContext.Books.Include(c => c.Genre);
+               
             }
         }
+
+        // Get the Book by passing book id
+        public Book GetBookById(int bookId)
+        {
+            return _bookStoreDbContext.Books.FirstOrDefault(b => b.Id == bookId);
+        }
+    
     }
 }

@@ -8,5 +8,6 @@ namespace MVC_Webshop.Models
     public interface IBookRepository
     {
         IEnumerable<Book> AllBooks { get; }
+        Book GetBookById(int bookId);
     }
 }
