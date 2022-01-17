@@ -1,0 +1,24 @@
+﻿@*
+    This page to show the book details when book image will be clicked
+*@
+@model Book
+
+<h2>@Model.Title</h2>
+
+<div class="thumbnail">
+    <img alt="@Model.Title" src="@Model.ImageUrl">
+    <div class="caption-full">
+        <h3 class="pull-right">@Model.UnitPrice</h3>
+        <h3>
+            <a href="#">@Model.Title</a>
+        </h3>
+        <p>@Model.Description</p>
+        <div class="addToCart">
+            <p class="button">
+                @* <a class="btn btn-primary" asp-controller="Controller for shopping cart " asp-action="action to add to Shopping Cart"
+                    asp-route-bookId="@Model.Id">Add to cart</a> *@
+            </p>
+        </div>
+    </div>
+</div>
+
