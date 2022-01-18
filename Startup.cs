@@ -17,6 +17,7 @@ using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using React.AspNet;
 using Rotativa.AspNetCore;
+using MVC_Webshop.Data;
 
 namespace MVC_Webshop
 {
@@ -103,6 +104,7 @@ namespace MVC_Webshop
                 endpoints.MapRazorPages();
             });
 
+            BookStoreDbInitializer.Seed(app);//Seed database
             RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
         }
     }

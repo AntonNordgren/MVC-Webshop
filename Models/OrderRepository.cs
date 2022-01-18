@@ -7,5 +7,6 @@ namespace MVC_Webshop.Models
 {
     public class OrderRepository :IOrderRepository
     {
+
     }
 }
