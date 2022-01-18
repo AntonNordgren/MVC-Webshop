@@ -3,14 +3,17 @@
     padding: 0;
 }
 
-a {
-    color: #008575;
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
+.nav-link {
+    color: #6c757d;
+}
 
-    a :hover {
-        color: black;
-    }
+.nav-link:hover {
+    color: black;
+}
 
 body {
     background-color: #fff;
@@ -39,17 +42,19 @@ header {
 }
 
 .icon-container {
-    width: 80px;
-    display: flex;
     position: absolute;
-    right: 30px;
-    top: 15px;
-    transform: translate(-50%, -50%);
+    right: 10px;
+    top: 25px;
 }
 
     .icon-container svg {
         flex: 1;
     }
+
+.search-bar {
+    position: relative;
+    top: 20px;
+}
 
 footer {
     width: 100%;
@@ -72,5 +77,5 @@ footer {
 }
 
 .content {
-    height: calc(100vh - 407px);
+    height: calc(100vh - 475px);
 }
