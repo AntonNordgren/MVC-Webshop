@@ -79,3 +79,10 @@ footer {
 .content {
     height: calc(100vh - 475px);
 }
+
+.login-form-container {
+    position: relative;
+    width: 500px;
+    margin: auto;
+    top: 30px;
+}
