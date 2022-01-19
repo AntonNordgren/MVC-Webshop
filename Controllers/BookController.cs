@@ -10,6 +10,8 @@ namespace MVC_Webshop.Controllers
     public class BookController : Controller
     {
         private readonly IBookRepository _bookRepository;
+
+        // Constructor injection
         public BookController(IBookRepository bookRepository)
         {
             _bookRepository = bookRepository;

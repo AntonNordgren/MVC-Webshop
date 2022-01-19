@@ -36,6 +36,7 @@ namespace MVC_Webshop
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ShoppingCartActions>(ci => ShoppingCartActions.GetCart(ci));
 
           
              services.AddDbContext<BookStoreDbContext>(
@@ -51,6 +52,7 @@ namespace MVC_Webshop
                 option => option.DefaultEngineName = V8JsEngine.EngineName).AddV8();
             services.AddControllersWithViews();
             services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddHttpContextAccessor();
             services.AddSession();
             services.AddRazorPages();
 
@@ -91,6 +93,7 @@ namespace MVC_Webshop
             // inject middleware in HTTP pipeline
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession(); // must be before UseRouting
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
