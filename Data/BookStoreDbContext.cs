@@ -19,8 +19,8 @@ namespace MVC_Webshop.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
-        
-        // public DbSet<clasName> Name {get; set;}
+
+        public DbSet<CartItem> CartItems { get; set; }
 
 
         // using Fluent API
