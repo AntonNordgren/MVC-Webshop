@@ -99,3 +99,8 @@ footer {
 .order-book-summary {
     text-align: right;
 }
+
+.buy-button-icon {
+    position: relative;
+    top: -1px;
+}
