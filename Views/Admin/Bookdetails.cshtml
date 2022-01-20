@@ -1,0 +1,65 @@
+﻿@model Book
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col" colspan="2">@Model.Title</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Isbn</th>
+            <td>@Model.Isbn</td>
+            <td rowspan="6"><img src=@Model.ImageUrl/></td>
+        </tr>
+        <tr>
+            <th scope="row">Genre</th>
+            <td>@Model.Genre.Type</td>
+
+        </tr>
+        <tr>
+            <th scope="row">Publisher</th>
+            <td>@Model.Publisher.Name</td>
+
+        </tr>
+        <tr>
+            <th scope="row">Publish Date</th>
+            <td>@Model.PublisherDate.ToString("dd MMM yyyy")</td>
+        </tr>
+        <tr>
+            <th scope="row">Language</th>
+            <td>@Model.Language</td>
+        </tr>
+        <tr>
+            <th scope="row">Quantity</th>
+            <td>@Model.Quantity</td>
+        </tr>
+        <tr>
+            <th scope="row">Price</th>
+            <td>@Model.UnitPrice</td>
+        </tr>
+        <tr>
+            <th scope="row">Pages</th>
+            <td>@Model.TotalPage</td>
+        </tr>
+        <tr>
+            <th scope="row">Authors</th>
+            <td>
+                @String.Join(", ", Model.BookAuthors.Select(p => p.Author.FullName).ToArray())
+
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Description</th>
+            <td colspan="2">@Model.Description</td>
+        </tr>
+        <tr>
+            <td><a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit </a>    <a class="btn btn-primary"><i class="bi bi-pencil-square"></i>Return</a></td>
+        </tr>
+    </tbody>
+</table>
