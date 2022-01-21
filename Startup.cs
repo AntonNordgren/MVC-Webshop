@@ -35,6 +35,7 @@ namespace MVC_Webshop
         {
             //dependency injection 
             services.AddScoped<IBookRepository, BookRepository>();
+
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ShoppingCartActions>(ci => ShoppingCartActions.GetCart(ci));
