@@ -1,24 +1,103 @@
-﻿@*
+﻿@*@model Book*@
+@*
     This page to show the book details when book image will be clicked
 *@
-@model Book
 
-<h2>@Model.Title</h2>
+<div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Library</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data</li>
+        </ol>
+    </nav>
 
-<div class="thumbnail">
-    <img alt="@Model.Title" src="@Model.ImageUrl">
-    <div class="caption-full">
-        <h3 class="pull-right">@Model.UnitPrice</h3>
-        <h3>
-            <a href="#">@Model.Title</a>
-        </h3>
-        <p>@Model.Description</p>
-        <div class="addToCart">
-            <p class="button">
-                @* <a class="btn btn-primary" asp-controller="Controller for shopping cart " asp-action="action to add to Shopping Cart"
-                    asp-route-bookId="@Model.Id">Add to cart</a> *@
-            </p>
+    <div>
+
+        <div class="row">
+            <div class="col col-3">
+                <img class="book-detail-img-container"
+                     src="https://s2.adlibris.com/images/27968735/introducing-web-development.jpg" />
+            </div>
+
+            <div class="col col-9">
+                <div class="">
+                    <h3>Introducing Web Development</h3>
+                    <h5>Jörg Krause</h5>
+                    <h3 class="text-danger">299 kr</h3>
+                    <hr />
+                    <div>
+                        <label for="quantity-input">Välj Antal</label>
+                        <input id="quanity-input" type="number" width="100" />
+                        <a href="#" class="btn bg-secondary m-auto text-white rounded-0">
+                            Lägg i kundkorg
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+        <div class="row">
+            <div class="col col-3">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5>Författare: Jörg Krause</h5>
+                        <h5>ISBN: 9781484224984</h5>
+                        <h5>Språk: Engelska</h5>
+                        <h5>Vikt: 1766 gram</h5>
+                        <h5>Utgiven: 2016-12-23</h5>
+                        <h5>Förlag: APress</h5>
+                        <h5>Antal sidor: 89</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-9">
+                <div class="card p-2 mt-2">
+                    <div class="card-body">
+                        <h2 class="card-title">Beskrivning</h2>
+                        <p>
+                            This brief book is an easy-to-digest introduction to the key concepts of web development. Understand the concepts of the web and how they apply to static and dynamic websites. See how HTML and CSS are used to create the bones of the web.
+                            Concisely presented through four key concept chapters, Introducing Web Development will enable you to get a clear understanding of how web development works.
+                        </p>
+                        <h5 class="card-title">What You Will Learn</h5>
+
+                        How the web works and interacts with websites
+                        What static and dynamic websites are and how they work
+                        How the static parts of a website are coded using HTML and CSS
+
+                        Who This Book Is For
+                        Anyone who wants to understand the basics of web development.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
     </div>
 </div>
 
+<!--<h2>Model.Title</h2>
+
+<div class="thumbnail">
+    <img alt="Model.Title" src="Model.ImageUrl">
+    <div class="caption-full">
+        <h3 class="pull-right">Model.UnitPrice</h3>
+        <h3>
+            <a href="#">Model.Title</a>
+        </h3>
+        <p>Model.Description</p>
+        <div class="addToCart">
+            <p class="button">-->
+                @* <a class="btn btn-primary" asp-controller="Controller for shopping cart " asp-action="action to add to Shopping Cart"
+                    asp-route-bookId="@Model.Id">Add to cart</a> *@
+            <!--</p>
+        </div>
+    </div>
+</div>-->

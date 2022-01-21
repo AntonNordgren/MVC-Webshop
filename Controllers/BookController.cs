@@ -23,14 +23,16 @@ namespace MVC_Webshop.Controllers
         }
 
         // Action method for the details of the book 'Details View'
-        public IActionResult Details(int id)
+        public IActionResult Details()
         {
-            
-                            
-            var Book = _bookRepository.GetBookById(id);
-            if (Book == null)
-                return NotFound();
-            return View(Book);
+
+
+            //var Book = _bookRepository.GetBookById(id);
+            //if (Book == null)
+            //    return NotFound();
+            //return View(Book);
+
+            return View();
         }
     }
 }
