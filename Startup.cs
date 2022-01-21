@@ -35,7 +35,7 @@ namespace MVC_Webshop
         {
             //dependency injection 
             services.AddScoped<IBookRepository, BookRepository>();
-            // services.AddScoped<ShoppingCart>();
+
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ShoppingCartActions>(ci => ShoppingCartActions.GetCart(ci));
@@ -44,10 +44,10 @@ namespace MVC_Webshop
              services.AddDbContext<BookStoreDbContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("BookStoreDbContext")));
-             
+
 
             // Register the services 
-
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<BookStoreDbContext>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
             services.AddJsEngineSwitcher(

@@ -13,14 +13,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220119145439_EntityFrameworkCoreIdentityAdded.cs" />
+    <Compile Remove="Migrations\20220119145439_EntityFrameworkCoreIdentityAdded.Designer.cs" />
+    <Compile Remove="Migrations\20220119150511_Initial.cs" />
+    <Compile Remove="Migrations\20220119150511_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20220120122615_IdentityAdded.cs" />
+    <Compile Remove="Migrations\20220120122615_IdentityAdded.Designer.cs" />
+    <Compile Remove="Migrations\20220120132719_Initial.cs" />
+    <Compile Remove="Migrations\20220120132719_Initial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.14.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.22" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.21" />
     <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.22" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.22" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.22">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.21">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
