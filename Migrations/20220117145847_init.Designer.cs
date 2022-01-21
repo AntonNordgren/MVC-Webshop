@@ -11,7 +11,7 @@ namespace MVC_Webshop.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
     [Migration("20220117145847_init")]
-    partial class init
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

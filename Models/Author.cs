@@ -17,7 +17,7 @@ namespace MVC_Webshop.Models
         public int Id { get; set; }
 
         [Required]
-        [DisplayName("Author Full Name")]
+        [DisplayName("Author FullName")]
         [MaxLength(49, ErrorMessage = "Author full name cannot be more than 49 Characters")]
         public string FullName { get; set; }
 

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace MVC_Webshop.Models
 {
-    public class BookStoreDbContext : DbContext
+    // inheriting from Identity.EntityFrameworkCore
+    public class BookStoreDbContext :IdentityDbContext<IdentityUser>
     {
         public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : base(options)
         {
@@ -26,6 +29,10 @@ namespace MVC_Webshop.Models
         // using Fluent API
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // used to resolve the error while add migration after using IdentityDbContext
+            //error "The entity type IdentityUserLogin of string require a primary key to be defined"
+            base.OnModelCreating(modelBuilder);
+
             // BookAuthor relationsship
             modelBuilder.Entity<BookAuthor>()
                 .HasOne(b => b.Book)
