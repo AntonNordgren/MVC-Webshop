@@ -27,7 +27,9 @@ namespace MVC_Webshop
         {
             Configuration = configuration;
         }
-
+        /// <summary>
+        /// /
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -35,7 +37,7 @@ namespace MVC_Webshop
         {
             //dependency injection 
             services.AddScoped<IBookRepository, BookRepository>();
-
+            
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ShoppingCartActions>(ci => ShoppingCartActions.GetCart(ci));
@@ -44,10 +46,10 @@ namespace MVC_Webshop
              services.AddDbContext<BookStoreDbContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("BookStoreDbContext")));
-
+             
 
             // Register the services 
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<BookStoreDbContext>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
             services.AddJsEngineSwitcher(
