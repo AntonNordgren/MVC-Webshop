@@ -1,24 +1,115 @@
-﻿@model Book 
+﻿@model BookDataViewModel
 @{
 }
-<h1>@Model.Id : @Model.Title</h1>
+
 <form>
-    <div class="form-group">
-        <label for="Title">Title</label>
-        <input type="text" class="form-control" id="Title" value="@Model.Title">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-        <label for="ISBN">ISBN</label>
-        <input type="text" class="form-control" id="ISBN" value="@Model.Isbn">
-    </div>
-    <div class="form-group">
-        <label for="Language">Language</label>
-        <input type="text" class="form-control" id="Language" value="@Model.Language">
-    </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col" colspan="3"><input type="text" class="form-control" value="@Model.Book.Title" /></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Isbn</th>
+                <td><input type="text" class="form-control" colspan="2" value="@Model.Book.Isbn" /></td>
+                <td></td>
+                <th scope="colgroup">Image:</th>
+            </tr>
+            <tr>
+                <th scope="row">Genre</th>
+                <td>
+                    <select id="Genres" name="SelectedTags">
+                        @foreach (var genre in Model.Genres)
+                        {
+                            <option value="@genre.Id">@genre.Type</option>
+                        }
+
+
+                    </select>
+                </td>
+                <td><a href="#">edit genres</a></td>
+                <td><input type="url" class="form-control" id="img" value="@Model.Book.ImageUrl" /></td>
+
+
+            </tr>
+            <tr>
+                <th scope="row">Publisher</th>
+                <td>
+                    <select id="SelectedTags" name="SelectedTags">
+                        @foreach (var publisher in Model.Publishers)
+                        {
+                            <option value="@publisher.Id">@publisher.Name</option>
+                        }
+
+
+                    </select>
+                </td>
+                <td><a href="#">edit publishers</a></td>
+                <td rowspan="6"><img id="ImagePreview" src=@Model.Book.ImageUrl /></td>
+            </tr>
+            <tr>
+                <th scope="row">Publish Date</th>
+                <td><input type="date" id="start" colspan="2" name="trip-start" value=@Model.Book.PublisherDate.ToString() min="0-01-01" max="2030-01-01"></td>
+            </tr>
+            <tr>
+                <th scope="row">Language</th>
+                <td><input type="text" colspan="2" class="form-control" value="@Model.Book.Language" /></td>
+            </tr>
+            <tr>
+                <th scope="row">Quantity</th>
+                <td><input type="number" colspan="2" class="form-control" value="@Model.Book.Quantity" /></td>
+            </tr>
+            <tr>
+                <th scope="row">Price</th>
+                <td><input type="number" colspan="2" class="form-control" value="@Model.Book.UnitPrice" /></td>
+            </tr>
+            <tr>
+                <th scope="row">Pages</th>
+                <td><input type="number" colspan="2" class="form-control" value="@Model.Book.TotalPage" /></td>
+
+            </tr>
+            <tr>
+                <th scope="row">Authors</th>
+                <td>
+
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+                    <select class="selectpicker" multiple data-live-search="true">
+                        @foreach (var author in Model.Authors)
+                        {
+
+
+                            @if (Model.Book.BookAuthors.Any(x => x.AuthorId == author.Id))
+                            {
+                                <option value="@author.Id" selected>@author.FullName</option>
+                            }
+                            else
+                            {
+                                <option value="@author.Id">@author.FullName</option>
+                            }
+
+                        }
+                    </select>
+
+                </td>
+                <td><a href="#">edit authors</a></td>
+            </tr>
+            <tr>
+                <th scope="row">Description</th>
+                <td colspan="2"><textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="@Model.Book.Description">@Model.Book.Description</textarea></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-outline-primary" asp-controller="Admin" asp-action="Bookedit" asp-route-id="@Model.Book.Id"><i class="bi bi-pencil-square"></i>Edit </a>    
+                <a class="btn btn-primary" asp-controller="Admin" asp-action="Books"><i class="bi bi-pencil-square"></i>Return</a></td>
+            </tr>
+        </tbody>
+    </table>
 </form>
+

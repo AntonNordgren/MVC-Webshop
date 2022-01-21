@@ -9,9 +9,9 @@ namespace MVC_Webshop.ViewModels
     public class BookDataViewModel
     {
         public Book Book { get; set; }
-        public Publisher Publisher { get; set; }
-        public Genre Genre { get; set; }
-        public Author Author { get; set; }
-        public BookAuthor BookAuthor { get; set; }
+        public IEnumerable<Publisher> Publishers { get; set; }
+        public IEnumerable<Genre> Genres { get; set; }
+        public IEnumerable<Author> Authors { get; set; }
+        public BookAuthor BookAuthors { get; set; }
     }
 }

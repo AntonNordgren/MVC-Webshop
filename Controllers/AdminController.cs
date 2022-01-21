@@ -33,6 +33,7 @@ namespace MVC_Webshop.Controllers
         }
         private Book FilledBook(int id)
         {
+            
             var books = _context.Books.ToList();
             var book = books.First(x => x.Id == id);
             book.Publisher = _context.Publishers.ToList().First(x => x.Id == book.PublisherId);
@@ -46,7 +47,13 @@ namespace MVC_Webshop.Controllers
         }
         public IActionResult Bookedit(int id)
         {
-            return View(FilledBook(id));
+            BookDataViewModel vm = new BookDataViewModel();
+            vm.Book = FilledBook(id);
+            vm.Authors = _context.Authors.ToList();
+            vm.Genres = _context.Genres.ToList();
+            vm.Publishers = _context.Publishers.ToList();
+            
+            return View(vm);
         }
         public IActionResult Bookcreate()
         {
