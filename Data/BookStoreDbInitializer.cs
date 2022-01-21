@@ -10,15 +10,16 @@ namespace MVC_Webshop.Data
 {
     public class BookStoreDbInitializer
     {
+        
         public static void Seed(IApplicationBuilder applicationBuilder)
         {
-            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+          
+            using var serviceScope = applicationBuilder.ApplicationServices.CreateScope();
+            var context = serviceScope.ServiceProvider.GetService<BookStoreDbContext>();
+            context.Database.EnsureCreated();
+            if (!context.Genres.Any())//add genres if they do not exist
             {
-                var context = serviceScope.ServiceProvider.GetService<BookStoreDbContext>();
-                context.Database.EnsureCreated();
-                if (!context.Genres.Any())//add genres if they do not exist
-                {
-                    context.Genres.AddRange(new List<Genre>()
+                context.Genres.AddRange(new List<Genre>()
                     {
                         new Genre { Type = "Kids" },
                         new Genre { Type = "Food" },
@@ -28,19 +29,19 @@ namespace MVC_Webshop.Data
 
                     });
 
-                }
-                if (!context.Publishers.Any()) //add publishers if they do not exist
-                {
-                    context.Publishers.AddRange(new List<Publisher>()
+            }
+            if (!context.Publishers.Any()) //add publishers if they do not exist
+            {
+                context.Publishers.AddRange(new List<Publisher>()
                     {
                         new Publisher { Name = "SE" },
                         new Publisher { Name = "NOSE" }
                     });
-                    context.SaveChanges();
-                }
-                if (!context.Authors.Any()) //add books if they do not exist
-                {
-                    context.Authors.AddRange(new List<Author>()
+                context.SaveChanges();
+            }
+            if (!context.Authors.Any()) //add books if they do not exist
+            {
+                context.Authors.AddRange(new List<Author>()
                     {
                         new Author { FullName = "Dawn Machell" },
                         new Author { FullName = "Marie Helleday Ekwurtze" },
@@ -51,12 +52,12 @@ namespace MVC_Webshop.Data
                         new Author { FullName = "Jenny Wallden"},
                         new Author { FullName = "Helen Carlander"}
                     });
-                    context.SaveChanges();
-                }
+                context.SaveChanges();
+            }
 
-                if (!context.Books.Any()) //add books if they do not exist
-                {
-                    context.Books.AddRange(new List<Book>() 
+            if (!context.Books.Any()) //add books if they do not exist
+            {
+                context.Books.AddRange(new List<Book>()
                     {
                         new Book {
                             Title="Älskade nalle : saga med gosiga flärpar",
@@ -110,15 +111,15 @@ namespace MVC_Webshop.Data
                             PublisherId=1,
                             GenreId=2
                         },
-                    }) ;
-                    context.SaveChanges();
+                    });
+                context.SaveChanges();
 
-                }
-                if (!context.BookAuthors.Any())//add many to many connection between author and book
-                {
-                    context.BookAuthors.AddRange(new List<BookAuthor>()
+            }
+            if (!context.BookAuthors.Any())//add many to many connection between author and book
+            {
+                context.BookAuthors.AddRange(new List<BookAuthor>()
                     {
-                        new BookAuthor { 
+                        new BookAuthor {
                             AuthorId=1,BookId=1
                         },
                         new BookAuthor {
@@ -131,12 +132,12 @@ namespace MVC_Webshop.Data
                             AuthorId=7,BookId=4
                         }
                     });
-                    context.SaveChanges();
-                }
+                context.SaveChanges();
+            }
 
-                if (!context.Orders.Any()) //add example orders if there are none
-                {
-                    context.Orders.AddRange(new List<Order>()
+            if (!context.Orders.Any()) //add example orders if there are none
+            {
+                context.Orders.AddRange(new List<Order>()
                     {
                         new Order {
                             OrderDate= new DateTime(2022,01,02),
@@ -158,11 +159,11 @@ namespace MVC_Webshop.Data
                         }
 
                     });
-                    context.SaveChanges();
-                }
-                if (!context.OrderItems.Any()) //add example orderitems
-                {
-                    context.OrderItems.AddRange(new List<OrderItem>()
+                context.SaveChanges();
+            }
+            if (!context.OrderItems.Any()) //add example orderitems
+            {
+                context.OrderItems.AddRange(new List<OrderItem>()
                     {
                         new OrderItem
                         {
@@ -204,10 +205,8 @@ namespace MVC_Webshop.Data
                             OrderId=3
 
                         }
-                    }) ;
-                    context.SaveChanges();
-                }
-
+                    });
+                context.SaveChanges();
             }
         }
     }
