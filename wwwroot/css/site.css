@@ -77,6 +77,7 @@ footer {
 
 .navbar-second-container {
     width: 100%;
+    /*background-color: #6c757d;*/
 }
 
 .content {
@@ -98,4 +99,9 @@ footer {
 
 .order-book-summary {
     text-align: right;
+}
+
+.buy-button-icon {
+    position: relative;
+    top: -1px;
 }

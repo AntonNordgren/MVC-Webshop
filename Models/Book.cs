@@ -37,6 +37,7 @@ namespace MVC_Webshop.Models
         public string Language { get; set; }
 
         public string ImageUrl { get; set; }
+        
 
         [Required]
         public decimal UnitPrice { get; set; }
