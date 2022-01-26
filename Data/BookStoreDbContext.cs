@@ -102,7 +102,7 @@ namespace MVC_Webshop.Data
                 Id = userId,
                 Email = "admin@bookstore.com",
                 NormalizedEmail ="ADMIN@BOOKSTORE.COM",
-                UserName = "Admin",
+                UserName = "admin@bookstore.com",
                 NormalizedUserName = "ADMIN",
                 PasswordHash = hasher.HashPassword(null,"admin")
             });

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MVC_Webshop.Migrations
 {
-    public partial class databaseReinitialized : Migration
+    public partial class Databasecreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -324,6 +324,26 @@ namespace MVC_Webshop.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3", "b227ea00-1066-4e0b-b837-07e011a39a40", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "b94bca5c-d895-4b99-b3be-6ae1fe4c88b9", "e2cbf730-00f6-4e57-875d-badb4ba8e255", "User", "USER" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Address", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalNumber", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "a68d21e7-9ec3-4f5b-93c7-27d522c75a01", 0, null, null, "294b80d8-b596-45cd-811c-144c1bc90a1b", null, "admin@bookstore.com", false, null, null, false, null, "ADMIN@BOOKSTORE.COM", "ADMIN", "AQAAAAEAACcQAAAAEDW6EVq3GHCQuzs74Oz9ElDHlQqLVrxg5P5iUnH9pXjbRKHFWEh5wyp6cJvH5g5c5w==", null, false, null, "bf88a533-1d00-47c3-81db-a9c0a690487d", false, "admin@bookstore.com" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "a68d21e7-9ec3-4f5b-93c7-27d522c75a01", "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

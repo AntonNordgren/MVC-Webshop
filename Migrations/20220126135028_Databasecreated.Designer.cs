@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Webshop.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    [Migration("20220125114019_databaseReinitialized")]
-    partial class databaseReinitialized
+    [Migration("20220126135028_Databasecreated")]
+    partial class Databasecreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,6 +108,24 @@ namespace MVC_Webshop.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a68d21e7-9ec3-4f5b-93c7-27d522c75a01",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "294b80d8-b596-45cd-811c-144c1bc90a1b",
+                            Email = "admin@bookstore.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@BOOKSTORE.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDW6EVq3GHCQuzs74Oz9ElDHlQqLVrxg5P5iUnH9pXjbRKHFWEh5wyp6cJvH5g5c5w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "bf88a533-1d00-47c3-81db-a9c0a690487d",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@bookstore.com"
+                        });
                 });
 
             modelBuilder.Entity("MVC_Webshop.Models.Author", b =>
@@ -345,6 +363,22 @@ namespace MVC_Webshop.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3",
+                            ConcurrencyStamp = "b227ea00-1066-4e0b-b837-07e011a39a40",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "b94bca5c-d895-4b99-b3be-6ae1fe4c88b9",
+                            ConcurrencyStamp = "e2cbf730-00f6-4e57-875d-badb4ba8e255",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -432,6 +466,13 @@ namespace MVC_Webshop.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "a68d21e7-9ec3-4f5b-93c7-27d522c75a01",
+                            RoleId = "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
