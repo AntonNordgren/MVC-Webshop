@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MVC_Webshop.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

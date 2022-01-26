@@ -33,7 +33,7 @@ namespace MVC_Webshop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<BookStoreDbContext>();
+           // services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<BookStoreDbContext>();
             //dependency injection 
             services.AddScoped<IBookRepository, BookRepository>();
             
@@ -45,7 +45,21 @@ namespace MVC_Webshop
              services.AddDbContext<BookStoreDbContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("BookStoreDbContext")));
-             
+
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //.AddEntityFrameworkStores<BookStoreDbContext>()
+            //.AddDefaultUI()
+            //.AddDefaultTokenProviders();
+
+            services.AddDefaultIdentity<ApplicationUser>
+                (options => options.SignIn.RequireConfirmedAccount = true)
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<BookStoreDbContext>()
+            .AddDefaultUI().AddDefaultTokenProviders(); 
+
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //  .AddEntityFrameworkStores<BookStoreDbContext>();
+
 
             // Register the services 
 
