@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVC_Webshop.Models;
+using MVC_Webshop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,17 +12,28 @@ namespace MVC_Webshop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController>    _logger;
+        private readonly ILogger<HomeController> _logger;
+        private readonly IBookRepository _bookRepository;
 
         // Constructor injection
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBookRepository bookRepository, ILogger<HomeController> logger)
         {
+            _bookRepository = bookRepository;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(HomeViewModel viewModel)
         {
-            return View();
+            List<Book> allBooks = _bookRepository.AllBooks.ToList();
+
+            viewModel.PopularBooks = _bookRepository.AllBooks.Select(x => x);
+
+            // Book testBook = _bookRepository.AllBooks.FirstOrDefault(book => book.Id == 1);
+
+            // ViewBag.List = allBooks;
+            // ViewData["Books"] = allBooks;
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
