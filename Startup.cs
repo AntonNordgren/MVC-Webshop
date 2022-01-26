@@ -33,9 +33,10 @@ namespace MVC_Webshop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<BookStoreDbContext>();
             //dependency injection 
             services.AddScoped<IBookRepository, BookRepository>();
-            // services.AddScoped<ShoppingCart>();
+            
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ShoppingCartActions>(ci => ShoppingCartActions.GetCart(ci));
