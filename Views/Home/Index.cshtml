@@ -1,100 +1,20 @@
-﻿@{
+﻿@model HomeViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 
 }
 
-<div class="content">
+<h2 class="text-secondary">Populärt</h2>
+<div class="row">
 
-    <div>
-        <h2 class="m-2 text-secondary">Populärt</h2>
-        <div class="row mb-2">
+    @if (Model != null)
+    {
+        @foreach (var book in Model.PopularBooks)
+        {
             <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
+                <partial name="_BookCard" model=@book />
             </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-        </div>
-    </div>
-
-    <div>
-        <h2 class="m-2 text-secondary">Nyheter</h2>
-        <div class="row mb-2">
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-        </div>
-    </div>
-
-
-    <div>
-        <h2 class="m-2 text-secondary">Barnböcker</h2>
-        <div class="row mb-2">
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-            <div class="col col-2">
-                @Html.Partial("~/Views/Shared/_BookCard.cshtml")
-            </div>
-
-        </div>
-    </div>
-
-
+        }
+    }
 </div>

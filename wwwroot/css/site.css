@@ -116,3 +116,8 @@ footer {
     min-height: 310px;
     background-color: #f8f9fa;
 }
+
+.card a {
+    color: black;
+    text-decoration: none;
+}
