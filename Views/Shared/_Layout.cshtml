@@ -98,6 +98,8 @@
                         <li><a class="dropdown-item" href="#">Romaner</a></li>
                         <li><a class="dropdown-item" href="#">Fantasy</a></li>
                     </ul>
+          
+                   
                 </div>
 
                 <br />
@@ -113,6 +115,18 @@
                         <li><a class="dropdown-item" href="#">Kokbok</a></li>
                         <li><a class="dropdown-item" href="#">Romaner</a></li>
                         <li><a class="dropdown-item" href="#">Fantasy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <p>Admin Account</p>
+                        }
+                        @if (User.IsInRole("User"))
+                        {
+                            <a> User Account</a>
+                        }
                     </ul>
                 </div>
 

@@ -4,14 +4,16 @@ using MVC_Webshop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVC_Webshop.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220126102921_SeededUserRole")]
+    partial class SeededUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,6 +112,17 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
+                            Id = "216e6d2e-06ec-48a2-a9cd-9f761cf280f9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b7826d61-aab0-4700-a588-9cca8a87cda1",
+                            Email = "admin@bookstore.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@BOOKSTORE.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI7Yg4koNQ6tw2NsrDtSA3H0/wZ6KBXNmPzbdDnKZN5tKGS0R50C0gdzBDdTctyZ8Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7ef11d48-91cb-4e02-b800-48a94e972d70",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

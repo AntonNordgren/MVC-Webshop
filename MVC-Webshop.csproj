@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220117145847_init.cs" />
+    <Compile Remove="Migrations\20220117145847_init.Designer.cs" />
+    <Compile Remove="Migrations\20220118101917_CartItemAdded.cs" />
+    <Compile Remove="Migrations\20220118101917_CartItemAdded.Designer.cs" />
     <Compile Remove="Migrations\20220119145439_EntityFrameworkCoreIdentityAdded.cs" />
     <Compile Remove="Migrations\20220119145439_EntityFrameworkCoreIdentityAdded.Designer.cs" />
     <Compile Remove="Migrations\20220119150511_Initial.cs" />
@@ -21,6 +25,24 @@
     <Compile Remove="Migrations\20220120122615_IdentityAdded.Designer.cs" />
     <Compile Remove="Migrations\20220120132719_Initial.cs" />
     <Compile Remove="Migrations\20220120132719_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20220120140859_IdentityAdded.cs" />
+    <Compile Remove="Migrations\20220120140859_IdentityAdded.Designer.cs" />
+    <Compile Remove="Migrations\20220125090507_CustomPropertiesAdded.cs" />
+    <Compile Remove="Migrations\20220125090507_CustomPropertiesAdded.Designer.cs" />
+    <Compile Remove="Migrations\20220125091222_CustomPropertiesAdded.cs" />
+    <Compile Remove="Migrations\20220125091222_CustomPropertiesAdded.Designer.cs" />
+    <Compile Remove="Migrations\20220125095938_AddedCustomProperties.cs" />
+    <Compile Remove="Migrations\20220125095938_AddedCustomProperties.Designer.cs" />
+    <Compile Remove="Migrations\20220125101253_updateDefaultIdentity.cs" />
+    <Compile Remove="Migrations\20220125101253_updateDefaultIdentity.Designer.cs" />
+    <Compile Remove="Migrations\20220125111645_databaseReinitialized.cs" />
+    <Compile Remove="Migrations\20220125111645_databaseReinitialized.Designer.cs" />
+    <Compile Remove="Migrations\20220126095000_SeededAdminRoleAndAccount.cs" />
+    <Compile Remove="Migrations\20220126095000_SeededAdminRoleAndAccount.Designer.cs" />
+    <Compile Remove="Migrations\20220126095658_SeededAdminRoleAndAccount.cs" />
+    <Compile Remove="Migrations\20220126095658_SeededAdminRoleAndAccount.Designer.cs" />
+    <Compile Remove="Migrations\20220126100100_SeededAdminRoleAndAccount.cs" />
+    <Compile Remove="Migrations\20220126100100_SeededAdminRoleAndAccount.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

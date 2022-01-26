@@ -22,7 +22,7 @@ namespace MVC_Webshop.Models
         [StringLength(99, ErrorMessage = "Book title cannot be more than 99 Characthers")]
         public string Title { get; set; }
 
-        [MaxLength(1000, ErrorMessage = "Book description cannot be more than 100 Characthers")]
+        [MaxLength(1000, ErrorMessage = "Book description cannot be more than 1000 Characthers")]
         public string Description { get; set; }
 
         [Required]
@@ -37,7 +37,6 @@ namespace MVC_Webshop.Models
         public string Language { get; set; }
 
         public string ImageUrl { get; set; }
-        
 
         [Required]
         public decimal UnitPrice { get; set; }
