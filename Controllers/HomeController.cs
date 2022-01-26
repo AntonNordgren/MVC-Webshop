@@ -12,6 +12,7 @@ namespace MVC_Webshop.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IBookRepository _bookRepository;
         private readonly ILogger<HomeController> _logger;
 
         // Constructor injection
