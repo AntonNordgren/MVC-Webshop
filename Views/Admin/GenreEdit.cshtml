@@ -4,42 +4,49 @@
 @{
 }
 @model BookDataViewModel
-
-<h2>Add Genre</h2>
-<form asp-controller="Admin" asp-action="AddGenre">
-    <label>Genre:</label>
-    <input type="text" name="name" />
-    <input type="submit" value="Add" />
-</form>
-
-<h2>Edit Genres</h2>
-<form asp-controller="Admin" asp-action="EditGenre">
-    <select name="id">
-        @foreach (var p in Model.Genres)
-        {
-            <option value=@p.Id>@p.Id : @p.Type</option>
-        }
-    </select>
-    <label>Name:</label>
-    <input type="text" name="name" />
-
-    <input type="submit" value="Edit" />
-
-</form>
-<h2>Delete Genres</h2>
-<form asp-controller="Admin" asp-action="DeleteGenre">
-    <select name="id">
-        @foreach (var p in Model.Genres)
-        {
-            <option value=@p.Id>@p.Id : @p.Type</option>
-        }
-    </select>
-
-    <input type="submit" value="Delete" />
-</form>
-@if (ViewBag.ErrorMess != null)
+@inject UserManager<ApplicationUser> UserManager;
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
-    <p>@ViewBag.ErrorMess</p>
+    <h2>Add Genre</h2>
+    <form asp-controller="Admin" asp-action="AddGenre">
+        <label>Genre:</label>
+        <input type="text" name="name" />
+        <input type="submit" value="Add" />
+    </form>
 
+    <h2>Edit Genres</h2>
+    <form asp-controller="Admin" asp-action="EditGenre">
+        <select name="id">
+            @foreach (var p in Model.Genres)
+            {
+                <option value=@p.Id>@p.Id : @p.Type</option>
+            }
+        </select>
+        <label>Name:</label>
+        <input type="text" name="name" />
+
+        <input type="submit" value="Edit" />
+
+    </form>
+    <h2>Delete Genres</h2>
+    <form asp-controller="Admin" asp-action="DeleteGenre">
+        <select name="id">
+            @foreach (var p in Model.Genres)
+            {
+                <option value=@p.Id>@p.Id : @p.Type</option>
+            }
+        </select>
+
+        <input type="submit" value="Delete" />
+    </form>
+    @if (ViewBag.ErrorMess != null)
+    {
+        <p>@ViewBag.ErrorMess</p>
+
+    }
+    <p><a asp-controller="Admin" asp-action="Index">Return</a> </p>
 }
-<p><a asp-controller="Admin" asp-action="Index">Return</a> </p>
+else
+{
+    <h2>Access Denied</h2>
+}
