@@ -4,9 +4,17 @@
 @{
 
 }
-<h1>Admin Pages</h1>
-<p>here you can look ath the books, genres publishers and author, and add delete or edit as you like</p>
-<p><a asp-controller="Admin" asp-action="Books">Books</a> </p>
-<p><a asp-controller="Admin" asp-action="GenreEdit">Genres</a> </p>
-<p><a asp-controller="Admin" asp-action="PublisherEdit">Publishers</a> </p>
-<p><a asp-controller="Admin" asp-action="AuthorEdit">Authors</a> </p>
+@inject UserManager<ApplicationUser> UserManager;
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <h1>Admin Pages</h1>
+    <p>here you can look ath the books, genres publishers and author, and add delete or edit as you like</p>
+    <p><a asp-controller="Admin" asp-action="Books">Books</a> </p>
+    <p><a asp-controller="Admin" asp-action="GenreEdit">Genres</a> </p>
+    <p><a asp-controller="Admin" asp-action="PublisherEdit">Publishers</a> </p>
+    <p><a asp-controller="Admin" asp-action="AuthorEdit">Authors</a> </p>
+}
+else
+{
+    <h2>Access Denied</h2>
+}

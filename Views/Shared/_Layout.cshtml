@@ -122,6 +122,8 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <p>Admin Account</p>
+
+                            <a asp-controller="Admin" asp-action="Index">Admin pages</a>
                         }
                         @if (User.IsInRole("User"))
                         {

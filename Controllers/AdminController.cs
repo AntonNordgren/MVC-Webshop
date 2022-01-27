@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MVC_Webshop.Data;
 using MVC_Webshop.Models;
 using MVC_Webshop.ViewModels;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Webshop.Controllers
 {
+    [Authorize (Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly BookStoreDbContext _context;

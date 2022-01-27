@@ -1,182 +1,190 @@
 ﻿@model BookDataViewModel
 @{
 }
+@inject UserManager<ApplicationUser> UserManager;
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <form asp-controller="Admin" asp-action="EditBook">
 
-<form asp-controller="Admin" asp-action="EditBook">
-
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col" colspan="2"><input name="title" type="text" class="form-control" value="@Model.Book.Title" /></th>
-                <td>
-                    @if (ViewBag.TITLE != null)
-                    {
-                        <p><small>@ViewBag.TITLE</small></p>
-                    }
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Isbn</th>
-                <td><input name="isbn" type="text" class="form-control" colspan="2" value="@Model.Book.Isbn" /></td>
-                <td>
-                    @if (ViewBag.ISBN != null)
-                    {
-                        <p><small>@ViewBag.ISBN</small></p>
-                    }
-                </td>
-                <th scope="colgroup">Image:</th>
-            </tr>
-            <tr>
-                <th scope="row">Genre</th>
-                <td>
-                    <select name="genreid" id="Genres" >
-                        @foreach (var genre in Model.Genres)
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" colspan="2"><input name="title" type="text" class="form-control" value="@Model.Book.Title" /></th>
+                    <td>
+                        @if (ViewBag.TITLE != null)
                         {
-                            @if (genre.Id == Model.Book.GenreId)
-                            {
-                                <option value="@genre.Id" selected>@genre.Type</option>
-                            }
-                            else { 
-                                <option value="@genre.Id">@genre.Type</option>
-                            }
-                            
+                            <p><small>@ViewBag.TITLE</small></p>
                         }
-
-
-                    </select>
-                </td>
-                <td><a asp-controller="Admin" asp-action="GenreEdit">edit genres</a></td>
-                <td><input name="imageurl" type="url" class="form-control" id="img" value="@Model.Book.ImageUrl" /></td>
-
-
-            </tr>
-            <tr>
-                <th scope="row">Publisher</th>
-                <td>
-                    <select name="publisherid" id="SelectedTags">
-                        @foreach (var publisher in Model.Publishers)
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Isbn</th>
+                    <td><input name="isbn" type="text" class="form-control" colspan="2" value="@Model.Book.Isbn" /></td>
+                    <td>
+                        @if (ViewBag.ISBN != null)
                         {
-
-
-                            @if (publisher.Id == Model.Book.Publisher.Id)
-                            {
-                                <option value="@publisher.Id" selected>@publisher.Name</option>
-
-                            }
-                            else
-                            {
-                                <option value="@publisher.Id">@publisher.Name</option>
-
-                            }
-
+                            <p><small>@ViewBag.ISBN</small></p>
                         }
+                    </td>
+                    <th scope="colgroup">Image:</th>
+                </tr>
+                <tr>
+                    <th scope="row">Genre</th>
+                    <td>
+                        <select name="genreid" id="Genres">
+                            @foreach (var genre in Model.Genres)
+                            {
+                                @if (genre.Id == Model.Book.GenreId)
+                                {
+                                    <option value="@genre.Id" selected>@genre.Type</option>
+                                }
+                                else
+                                {
+                                    <option value="@genre.Id">@genre.Type</option>
+                                }
+
+                            }
 
 
-                    </select>
-                </td>
-                <td><a asp-controller="Admin" asp-action="PublisherEdit">edit publishers</a></td>
-                <td rowspan="6"><img id="ImagePreview" src=@Model.Book.ImageUrl /></td>
-            </tr>
-            <tr>
-                <th scope="row">Publish Date</th>
-                <td><input name="publishdate" type="date" id="start" colspan="2" value="@Model.Book.PublisherDate.ToString("yyyy-MM-dd")" min="0-01-01" max="2030-01-01"></td>
-                <td>
-                    @if (ViewBag.PUBLISHDATE != null) 
-                    {
-                        <p><small>ViewBag.PUBLISHDATE</small></p> 
-                    }
-                    
-                
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Language</th>
-                <td><input name="language" type="text" colspan="2" class="form-control" value="@Model.Book.Language" /></td>
-            </tr>
-            <tr>
-                <th scope="row">Quantity</th>
-                <td><input name="quantity" type="number" colspan="2" class="form-control" value="@Model.Book.Quantity" /></td>
-                <td>
-                    @if (ViewBag.QUANTITY != null)
-                    {
-                        <p><small>@ViewBag.QUANTITY</small></p>
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Price</th>
-                <td><input name="unitprice" type="number" colspan="2" class="form-control" value="@Model.Book.UnitPrice" /></td>
-                <td>
-                    @if (ViewBag.UNITPRICE != null)
-                    {
-                        <p><small>@ViewBag.UNITPRICE</small></p>
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Pages</th>
-                <td><input name="totalpages" type="number" colspan="2" class="form-control" value="@Model.Book.TotalPage" /></td>
-                <td>
-                    @if (ViewBag.TOTALPAGES != null)
-                    {
-                        <p><small>@ViewBag.TOTALPAGES</small></p>
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Authors</th>
-                <td>
+                        </select>
+                    </td>
+                    <td><a asp-controller="Admin" asp-action="GenreEdit">edit genres</a></td>
+                    <td><input name="imageurl" type="url" class="form-control" id="img" value="@Model.Book.ImageUrl" /></td>
 
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-                    <select name="authorids" class="selectpicker" multiple data-live-search="true">
-                        @foreach (var author in Model.Authors)
+                </tr>
+                <tr>
+                    <th scope="row">Publisher</th>
+                    <td>
+                        <select name="publisherid" id="SelectedTags">
+                            @foreach (var publisher in Model.Publishers)
+                            {
+
+
+                                @if (publisher.Id == Model.Book.Publisher.Id)
+                                {
+                                    <option value="@publisher.Id" selected>@publisher.Name</option>
+
+                                }
+                                else
+                                {
+                                    <option value="@publisher.Id">@publisher.Name</option>
+
+                                }
+
+                            }
+
+
+                        </select>
+                    </td>
+                    <td><a asp-controller="Admin" asp-action="PublisherEdit">edit publishers</a></td>
+                    <td rowspan="6"><img id="ImagePreview" src=@Model.Book.ImageUrl /></td>
+                </tr>
+                <tr>
+                    <th scope="row">Publish Date</th>
+                    <td><input name="publishdate" type="date" id="start" colspan="2" value="@Model.Book.PublisherDate.ToString("yyyy-MM-dd")" min="0-01-01" max="2030-01-01"></td>
+                    <td>
+                        @if (ViewBag.PUBLISHDATE != null)
                         {
-
-
-                            @if (Model.Book.BookAuthors.Any(x => x.AuthorId == author.Id))
-                            {
-                                <option value="@author.Id" selected>@author.FullName</option>
-                            }
-                            else
-                            {
-                                <option value="@author.Id">@author.FullName</option>
-                            }
-
+                            <p><small>ViewBag.PUBLISHDATE</small></p>
                         }
-                    </select>
 
-                </td>
-                <td><a asp-controller="Admin" asp-action="AuthorEdit">edit authors</a></td>
-                <td>
-                    <button type="button" onclick="myFunction()">Preview Image</button>
 
-                    <script>
-                        function myFunction() {
-                            document.getElementById("ImagePreview").src = document.getElementById("img").value;
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Language</th>
+                    <td><input name="language" type="text" colspan="2" class="form-control" value="@Model.Book.Language" /></td>
+                </tr>
+                <tr>
+                    <th scope="row">Quantity</th>
+                    <td><input name="quantity" type="number" colspan="2" class="form-control" value="@Model.Book.Quantity" /></td>
+                    <td>
+                        @if (ViewBag.QUANTITY != null)
+                        {
+                            <p><small>@ViewBag.QUANTITY</small></p>
                         }
-                    </script>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Description</th>
-                <td colspan="2"><textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" value="@Model.Book.Description">@Model.Book.Description</textarea></td>
-                <td>
-                    
-                </td>
-            </tr>
-            <tr><td><input type="hidden" name="id" value="@Model.Book.Id"><input type="submit" value="Edit" /> </td></tr>
-            <tr>
-                <td><a class="btn btn-outline-primary" asp-controller="Admin" asp-action="Bookdetails" asp-route-id="@Model.Book.Id"><i class="bi bi-pencil-square"></i>Details </a>    
-                <a class="btn btn-primary" asp-controller="Admin" asp-action="Books"><i class="bi bi-pencil-square"></i>Return</a></td>
-            </tr>
-        </tbody>
-    </table>
-</form>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Price</th>
+                    <td><input name="unitprice" type="number" colspan="2" class="form-control" value="@Model.Book.UnitPrice" /></td>
+                    <td>
+                        @if (ViewBag.UNITPRICE != null)
+                        {
+                            <p><small>@ViewBag.UNITPRICE</small></p>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Pages</th>
+                    <td><input name="totalpages" type="number" colspan="2" class="form-control" value="@Model.Book.TotalPage" /></td>
+                    <td>
+                        @if (ViewBag.TOTALPAGES != null)
+                        {
+                            <p><small>@ViewBag.TOTALPAGES</small></p>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Authors</th>
+                    <td>
 
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+                        <select name="authorids" class="selectpicker" multiple data-live-search="true">
+                            @foreach (var author in Model.Authors)
+                            {
+
+
+                                @if (Model.Book.BookAuthors.Any(x => x.AuthorId == author.Id))
+                                {
+                                    <option value="@author.Id" selected>@author.FullName</option>
+                                }
+                                else
+                                {
+                                    <option value="@author.Id">@author.FullName</option>
+                                }
+
+                            }
+                        </select>
+
+                    </td>
+                    <td><a asp-controller="Admin" asp-action="AuthorEdit">edit authors</a></td>
+                    <td>
+                        <button type="button" onclick="myFunction()">Preview Image</button>
+
+                        <script>
+                            function myFunction() {
+                                document.getElementById("ImagePreview").src = document.getElementById("img").value;
+                            }
+                        </script>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Description</th>
+                    <td colspan="2"><textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" value="@Model.Book.Description">@Model.Book.Description</textarea></td>
+                    <td>
+                    </td>
+                </tr>
+                <tr><td><input type="hidden" name="id" value="@Model.Book.Id"><input type="submit" value="Edit" /> </td></tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-primary" asp-controller="Admin" asp-action="Bookdetails" asp-route-id="@Model.Book.Id"><i class="bi bi-pencil-square"></i>Details </a>
+                        <a class="btn btn-primary" asp-controller="Admin" asp-action="Books"><i class="bi bi-pencil-square"></i>Return</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+}
+else
+{
+    <h2>Access Denied</h2>
+}
