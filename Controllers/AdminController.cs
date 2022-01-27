@@ -64,8 +64,134 @@ namespace MVC_Webshop.Controllers
         }
         public IActionResult Bookcreate()
         {
-            return View();
+            
+            BookDataViewModel vm = new BookDataViewModel();
+            
+            vm.Authors = _context.Authors.ToList();
+            vm.Genres = _context.Genres.ToList();
+            vm.Publishers = _context.Publishers.ToList();
+
+            return View(vm);
         }
+        [HttpPost]
+        public IActionResult AddBook(
+            string id,
+            string title,
+            string isbn,
+            string genreid,
+            string publisherid,
+            string publishdate,
+            string language,
+            string[] authorids,
+            string unitprice,
+            string quantity,
+            string imageurl,
+            string totalpages,
+            string description)
+        {
+            //make sure that no value is null
+            title = title == null ? "" : title;
+            isbn = isbn == null ? "" : isbn;
+            publishdate = publishdate == null ? "" : publishdate;
+            language = language == null ? "" : language;
+            unitprice = unitprice == null ? "" : unitprice;
+            quantity = quantity == null ? "" : quantity;
+            imageurl = imageurl == null ? "" : imageurl;
+            description = description == null ? "" : description;
+            totalpages = totalpages == null ? "" : totalpages;
+
+            bool valid = true;
+            if (title.Length < 1 || title.Length > 1000)
+            {
+                ViewBag.TITLE = "book needs a title with less that 1000 characters";
+                valid = false;
+            }
+           
+            if (isbn.Length != 13)
+            {
+                ViewBag.ISBN = "ISBN need to be 13 characters";
+                valid = false;
+            }
+            
+            if (unitprice == "" || decimal.Parse(unitprice) < 0)
+            {
+                ViewBag.UNITPRICE = "Unitprice needs to be a positive number";
+                valid = false;
+            }
+            
+            if (quantity == "" || int.Parse(quantity) < 0)
+            {
+                ViewBag.QUANTITY = "Quantity needs to be a positive number";
+                valid = false;
+            }
+            
+            if (totalpages == "" || int.Parse(totalpages) < 0)
+            {
+                ViewBag.TOTALPAGES = "pages needs to be a positive number";
+                valid = false;
+            }
+            
+            if (publishdate == "")
+            {
+                ViewBag.PUBLISHDATE = "Please enter a date for publishing";
+                valid = false;
+            }
+            if (valid)
+            {
+                
+                _context.Books.Add(new Book
+                {
+                    GenreId = int.Parse(genreid),
+                    PublisherId = int.Parse(publisherid),
+                    Language = language,
+                    Description = description,
+                    ImageUrl = imageurl,
+                    PublisherDate = DateTime.Parse(publishdate),
+                    UnitPrice = decimal.Parse(unitprice),
+                    Quantity=int.Parse(quantity),
+                    TotalPage=int.Parse(totalpages),
+                    Isbn=isbn,
+                    Title=title
+
+                }) ;
+                _context.SaveChanges();
+                int newid = _context.Books.Max(u => u.Id);
+
+                
+                for(int i=0; i<authorids.Length; i++)
+                {
+                    _context.BookAuthors.Add(new BookAuthor { AuthorId=int.Parse(authorids[i]),BookId=newid});
+                }
+                _context.SaveChanges();
+                var books = _context.Books.ToList();
+                return View("Books", books);
+            }
+            else
+            {
+                BookDataViewModel vm = new BookDataViewModel();
+
+                vm.Authors = _context.Authors.ToList();
+                vm.Genres = _context.Genres.ToList();
+                vm.Publishers = _context.Publishers.ToList();
+                return View("BookCreate",vm);
+            }
+
+            
+        }
+        
+        [HttpPost]
+        public IActionResult DeleteBook(string id)
+        {
+
+            _context.BookAuthors.RemoveRange(_context.BookAuthors.Where(x => x.BookId == int.Parse(id)));
+            _context.SaveChanges();
+            _context.Books.RemoveRange(_context.Books.Where(x => x.Id == int.Parse(id)));
+            _context.SaveChanges();
+
+            var books = _context.Books.ToList();
+            return View("Books",books);
+        }
+
         [HttpPost]
         public IActionResult EditBook(
             string id,
@@ -117,7 +243,7 @@ namespace MVC_Webshop.Controllers
             {
                 ViewBag.QUANTITY = "Quantity needs to be a positive number";
             }
-            else { book.UnitPrice = int.Parse(quantity); }
+            else { book.Quantity = int.Parse(quantity); }
             if (totalpages == "" || int.Parse(totalpages) < 0)
             {
                 ViewBag.TOTALPAGES = "pages needs to be a positive number";
@@ -184,7 +310,7 @@ namespace MVC_Webshop.Controllers
             var genre = new Genre() { Id = int.Parse(id) };
             if (vm.Books.Any(p => p.GenreId == int.Parse(id)))
             {
-                ViewBag.ErrorMess = "Could not delete, make sure there are no books with the genre you are attempting to deletefirst";
+                ViewBag.ErrorMess = "Could not delete, make sure there are no books with the genre you are attempting to delete first";
             }
             else
             {

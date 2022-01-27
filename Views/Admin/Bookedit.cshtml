@@ -8,8 +8,13 @@
         <thead>
             <tr>
                 <th scope="col">Title</th>
-                <th scope="col" colspan="3"><input name="title" type="text" class="form-control" value="@Model.Book.Title" /></th>
-
+                <th scope="col" colspan="2"><input name="title" type="text" class="form-control" value="@Model.Book.Title" /></th>
+                <td>
+                    @if (ViewBag.TITLE != null)
+                    {
+                        <p><small>@ViewBag.TITLE</small></p>
+                    }
+                </td>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +35,14 @@
                     <select name="genreid" id="Genres" >
                         @foreach (var genre in Model.Genres)
                         {
-                            <option value="@genre.Id">@genre.Type</option>
+                            @if (genre.Id == Model.Book.GenreId)
+                            {
+                                <option value="@genre.Id" selected>@genre.Type</option>
+                            }
+                            else { 
+                                <option value="@genre.Id">@genre.Type</option>
+                            }
+                            
                         }
 
 
@@ -47,7 +59,19 @@
                     <select name="publisherid" id="SelectedTags">
                         @foreach (var publisher in Model.Publishers)
                         {
-                            <option value="@publisher.Id">@publisher.Name</option>
+
+
+                            @if (publisher.Id == Model.Book.Publisher.Id)
+                            {
+                                <option value="@publisher.Id" selected>@publisher.Name</option>
+
+                            }
+                            else
+                            {
+                                <option value="@publisher.Id">@publisher.Name</option>
+
+                            }
+
                         }
 
 
@@ -59,6 +83,14 @@
             <tr>
                 <th scope="row">Publish Date</th>
                 <td><input name="publishdate" type="date" id="start" colspan="2" value="@Model.Book.PublisherDate.ToString("yyyy-MM-dd")" min="0-01-01" max="2030-01-01"></td>
+                <td>
+                    @if (ViewBag.PUBLISHDATE != null) 
+                    {
+                        <p><small>ViewBag.PUBLISHDATE</small></p> 
+                    }
+                    
+                
+                </td>
             </tr>
             <tr>
                 <th scope="row">Language</th>
@@ -122,6 +154,15 @@
 
                 </td>
                 <td><a asp-controller="Admin" asp-action="AuthorEdit">edit authors</a></td>
+                <td>
+                    <button type="button" onclick="myFunction()">Preview Image</button>
+
+                    <script>
+                        function myFunction() {
+                            document.getElementById("ImagePreview").src = document.getElementById("img").value;
+                        }
+                    </script>
+                </td>
             </tr>
             <tr>
                 <th scope="row">Description</th>
