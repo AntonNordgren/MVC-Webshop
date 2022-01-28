@@ -29,6 +29,7 @@ header {
 .logo {
     position: relative;
     top: -5px;
+    width: 50%;
 }
 
 .navbar-container {
