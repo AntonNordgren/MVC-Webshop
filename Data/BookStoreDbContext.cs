@@ -101,7 +101,7 @@ namespace MVC_Webshop.Data
             {
                 Id = userId,
                 Email = "admin@bookstore.com",
-                NormalizedEmail ="ADMIN@BOOKSTORE.COM",
+                NormalizedEmail = "ADMIN@BOOKSTORE.COM",
                 UserName = "admin@bookstore.com",
                 NormalizedUserName = "ADMIN@BOOKSTORE.COM",
                 EmailConfirmed = true,
