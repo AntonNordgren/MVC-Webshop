@@ -90,7 +90,7 @@ namespace MVC_Webshop.Data
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
                 Id = roleId,
-                Name = "Admin",
+                Name = "admin",
                 NormalizedName = "ADMIN",
                 
 
@@ -103,7 +103,8 @@ namespace MVC_Webshop.Data
                 Email = "admin@bookstore.com",
                 NormalizedEmail ="ADMIN@BOOKSTORE.COM",
                 UserName = "admin@bookstore.com",
-                NormalizedUserName = "ADMIN",
+                NormalizedUserName = "ADMIN@BOOKSTORE.COM",
+                EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null,"admin")
             });
 

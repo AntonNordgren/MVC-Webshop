@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - MVC_Webshop</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/cart.css" />
 </head>
 <body class="container">
 
@@ -17,7 +18,8 @@
                 <div class="row w-100">
 
                     <div class="col">
-                        <a href="#" class="navbar-brand">
+                        <a class="navbar-brand"
+                           asp-controller="Home" asp-action="Index">
                             <img src="~/img/Logo.png"
                                  width="250"
                                  class="logo" />
@@ -25,46 +27,49 @@
 
                     </div>
 
+                    
                     <div class="col">
-
-                        <form class="form-inline d-flex search-bar">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-secondary my-2 my-sm-0 m-1" type="submit">Search</button>
+                        <form class="form-inline d-flex search-bar" method="get">
+                            @using (Html.BeginForm("SearchResult", "search", FormMethod.Get))
+                            {
+                                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" >
+                                <button class="btn btn-secondary my-2 my-sm-0 m-1" type="submit" asp-controller="Book" asp-action="SearchResult" asp-route-SearchText="search">Search</button>
+                            }
                         </form>
+                    </div>
+                    
+                        <div class="col">
+                            <ul class="navbar-nav icon-container">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                        </svg>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="ShoppingCartActions" asp-action="Index">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                        </svg>
+                                    </a>
+                                </li>
+
+                                @await Component.InvokeAsync("CartSummary")
+
+                                <li>
+                                    <partial name="_LoginPartial" />
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+
 
                     </div>
-
-                    <div class="col">
-                        <ul class="navbar-nav icon-container">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                    </svg>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                                    </svg>
-                                </a>
-                            </li>
-
-
-                            <li>
-                                <partial name="_LoginPartial"/>
-                            </li>
-
-
-                        </ul>
-                    </div>
-
-
-
-                </div>
             </div>
 
 

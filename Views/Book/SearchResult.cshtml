@@ -1,0 +1,29 @@
+﻿@model SearhBookViewModel
+
+    
+
+@{
+    ViewData["Title"] = "Search Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2 class="text-secondary">Sreach Result</h2>
+<div class="row">
+
+    @if (Model != null)
+    {
+        @foreach (var book in Model.Books)
+        {
+            
+            <div class="col col-2">
+                <partial name="_BookCard" model=@book />
+            </div>
+        }
+    }
+
+    @if (Model == null)
+    {
+        <p>No Result found!!</p>
+    }
+</div>

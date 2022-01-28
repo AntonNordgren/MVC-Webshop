@@ -22,6 +22,7 @@ namespace MVC_Webshop.Controllers
         }
         public IActionResult Index()
         {
+            
             var items = _shoppingCartActions.GetCartItems();
             _shoppingCartActions.CartItems = items;
 
@@ -34,10 +35,14 @@ namespace MVC_Webshop.Controllers
             return View(shoppingCartActionsViewModel);    
         }
 
+
+        // add book to cart
         public RedirectToActionResult AddToCart(int bookId)
         {
             var selectedbook = _bookRepository.AllBooks.FirstOrDefault(b => b.Id == bookId);
-
+            
+            Console.WriteLine(bookId);
+           
             if (selectedbook != null)
             {
                 _shoppingCartActions.AddToCart(selectedbook, 1);

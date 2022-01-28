@@ -9,8 +9,8 @@
         <div class="card-body d-flex flex-column">
             <h5 class="card-title text-center">@Model.Title</h5>
             @*<p class="card-text h-100">
-                    @Model.Description
-                </p>*@
+            @Model.Description
+        </p>*@
 
             @if (Model.BookAuthors != null)
             {
@@ -22,10 +22,14 @@
 
             <div class="text-center mt-3 m-auto" style="">
                 <h3 class="text-danger">@Model.UnitPrice kr</h3>
-                <a href="#" class="btn bg-secondary m-auto text-white rounded-0">
+                <a class="btn bg-secondary m-auto text-white rounded-0"
+                   asp-controller = "ShoppingCartActions"
+                       asp-action="AddToCart"
+                       asp-route-bookId="@Model.Id">
                     Lägg i kundkorg
                 </a>
             </div>
+
         </div>
     </div>
 </a>

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MVC_Webshop.Data;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,18 @@ namespace MVC_Webshop.Models
         {
             return _bookStoreDbContext.Books.FirstOrDefault(b => b.Id == bookId);
         }
-    
+
+        // search for books by book title
+      
+        public IEnumerable<Book> SearchBookByTitle(string SearchText)
+        {
+            //if(!string.IsNullOrEmpty (bookTitle) )
+                 
+            return _bookStoreDbContext.Books.Where(re => re.Title.Contains(SearchText) ||
+                                                         re.Isbn.Contains(SearchText));
+
+        }
+
+
     }
 }

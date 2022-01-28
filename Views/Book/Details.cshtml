@@ -1,4 +1,4 @@
-﻿@*@model Book*@
+﻿
 @*
     This page to show the book details when book image will be clicked
 *@
@@ -25,9 +25,9 @@
                     <h2>@Model.Title</h2>
 
                     @*foreach (var author in Model.BookAuthors)
-                    {
-                        <h3>author</h3>
-                    }*@
+                        {
+                            <h3>author</h3>
+                        }*@
 
                 </div>
 
@@ -37,9 +37,12 @@
                         <h6 class="">@Model.Quantity st i lager</h6>
                         @*<label for="quantity-input">Välj Antal</label>
                             <input id="quanity-input" type="number" width="100" />*@
-                        <a href="#" class="btn bg-secondary m-auto text-white rounded-0">
-                            Lägg i kundkorg
-                        </a>
+                    <a class="btn bg-secondary m-auto text-white rounded-0"
+                       asp-controller="ShoppingCartActions"
+                       asp-action="AddToCart"
+                       asp-route-bookId="@Model.Id">
+                        Lägg i kundkorg
+                    </a>
 
                         @*<div class="">
                                 <div>
@@ -71,9 +74,9 @@
                 <h5>
                     Författare:
                     @*foreach (var author in Model.BookAuthors)
-                    {
-                        author
-                    }*@
+                        {
+                            author
+                        }*@
                 </h5>
                 <h5>ISBN: @Model.Isbn</h5>
                 <h5>Språk: @Model.Language</h5>
@@ -91,7 +94,7 @@
                 <p>
                     @Model.Description
                     @*This brief book is an easy-to-digest introduction to the key concepts of web development. Understand the concepts of the web and how they apply to static and dynamic websites. See how HTML and CSS are used to create the bones of the web.
-                    Concisely presented through four key concept chapters, Introducing Web Development will enable you to get a clear understanding of how web development works.*@
+                        Concisely presented through four key concept chapters, Introducing Web Development will enable you to get a clear understanding of how web development works.*@
                 </p>
             </div>
         </div>

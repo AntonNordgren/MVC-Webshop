@@ -24,6 +24,9 @@ namespace MVC_Webshop.Controllers
 
         public IActionResult Index(HomeViewModel viewModel)
         {
+           
+
+
             List<Book> allBooks = _bookRepository.AllBooks.ToList();
 
             viewModel.PopularBooks = _bookRepository.AllBooks.Select(x => x);
@@ -35,6 +38,11 @@ namespace MVC_Webshop.Controllers
 
             return View(viewModel);
         }
+
+
+        
+
+
 
         public IActionResult Privacy()
         {

@@ -10,5 +10,6 @@ namespace MVC_Webshop.Models
     {
         IEnumerable<Book> AllBooks { get; }
         Book GetBookById(int bookId);
+        IEnumerable<Book> SearchBookByTitle(string bookTitle);
     }
 }
