@@ -25,12 +25,12 @@
                         </a>
                     </div>
 
-                    
+
                     <div class="col">
                         <form class="form-inline d-flex search-bar" method="get">
                             @using (Html.BeginForm("SearchResult", "search", FormMethod.Get))
                             {
-                                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" >
+                                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-secondary my-2 my-sm-0 m-1" type="submit" asp-controller="Book" asp-action="SearchResult" asp-route-SearchText="search">Search</button>
                             }
                         </form>
@@ -58,7 +58,7 @@
             </a>
         </li>*@
 
-                                
+
 
 
 
@@ -67,11 +67,12 @@
 
 
 
-                    </div>
+                </div>
             </div>
 
 
             <div class="navbar-second-container navbar navbar-expand p-0">
+
 
                 <div class="dropdown m-1">
                     <button class="btn shadow-none dropdown-toggle disabled"
@@ -81,43 +82,12 @@
                         Kategorier
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="">
-                        <li><a class="dropdown-item" href="#">Kokbok</a></li>
-                        <li><a class="dropdown-item" href="#">Romaner</a></li>
-                        <li><a class="dropdown-item" href="#">Fantasy</a></li>
-                    </ul>
-                </div>
 
-                <br />
+                        <li><a class="dropdown-item" href="/Category/?Genre=Food">Food</a></li>
+                        <li><a class="dropdown-item" href="/Category/?Genre=Detective">Detective</a></li>
+                        <li><a class="dropdown-item" href="/Category/?Genre=Kids">Kids</a></li>
 
-                <div class="dropdown m-1">
-                    <button class="btn shadow-none dropdown-toggle disabled"
-                            type="button"
-                            id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        Top 10
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="">
-                        <li><a class="dropdown-item" href="#">Kokbok</a></li>
-                        <li><a class="dropdown-item" href="#">Romaner</a></li>
-                        <li><a class="dropdown-item" href="#">Fantasy</a></li>
-                    </ul>
-          
-                   
-                </div>
 
-                <br />
-
-                <div class="dropdown m-1">
-                    <button class="btn shadow-none dropdown-toggle disabled"
-                            type="button"
-                            id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        Rea
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="">
-                        <li><a class="dropdown-item" href="#">Kokbok</a></li>
-                        <li><a class="dropdown-item" href="#">Romaner</a></li>
-                        <li><a class="dropdown-item" href="#">Fantasy</a></li>
                     </ul>
                 </div>
 
@@ -140,23 +110,23 @@
 
                 @*<ul class="navbar-nav">
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">Kategorier</a>
-            </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kategorier</a>
+                        </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">Top 10</a>
-            </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Top 10</a>
+                        </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">Rea</a>
-            </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Rea</a>
+                        </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">new</a>
-            </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">new</a>
+                        </li>
 
-        </ul>*@
+                    </ul>*@
             </div>
 
 
