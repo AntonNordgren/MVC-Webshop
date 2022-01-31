@@ -12,6 +12,7 @@ namespace MVC_Webshop.Controllers
 {
     public class HomeController : Controller
     {
+        
         private readonly IBookRepository _bookRepository;
         private readonly ILogger<HomeController> _logger;
 
@@ -39,8 +40,12 @@ namespace MVC_Webshop.Controllers
             return View(viewModel);
         }
 
+        [Route("/NotFound")]
+        public IActionResult PageNotFound()
+        {
+            return View();
+        }
 
-        
 
 
 
@@ -54,5 +59,11 @@ namespace MVC_Webshop.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+       
+           
+        }
+
+
     }
-}
+
+
