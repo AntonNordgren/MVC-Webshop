@@ -1,0 +1,14 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+
+<h1>Could not find the user you were looking for</h1>
+@if (ViewBag.ErrorMessage != null)
+{
+    <p>@ViewBag.ErrorMessage</p>
+}
+
+<a class="btn btn-primary" asp-controller="Admin" asp-action="Books"><i class="bi bi-pencil-square"></i>Return</a>
