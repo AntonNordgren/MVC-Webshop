@@ -34,33 +34,28 @@ namespace MVC_Webshop.Controllers
         }
 
         //////////////// testing search 
-        
+
         public ViewResult SearchResult(string SearchText)
         {
-
             IEnumerable<Book> books;
-
-           books = _bookRepository.SearchBookByTitle("wok");
-            //if (!string.IsNullOrEmpty(SearchText))
-            //{
-            //    var result = books.Where(s => s.Title.Contains(SearchText));
-              
-            //}
-            //else
-            //{
-
-            //}
-            // searhBookViewModel.SearchBooks = _bookRepository.AllBooks.Select(x => x);
-
-            // Book testBook = _bookRepository.AllBooks.FirstOrDefault(book => book.Id == 1);
-
-            // ViewBag.List = allBooks;
-            // ViewData["Books"] = allBooks;
-
-            return View(new SearhBookViewModel
+           books = _bookRepository.SearchBookByTitle(SearchText);
+            if (!string.IsNullOrEmpty(SearchText))
             {
-                Books = books
-            }); 
+                var result = books.Where(s => s.Title.Contains(SearchText));
+
+            ///    if(result.FirstOrDefault)
+             //       return View("~/Views/Book/SearchResultNotFound.cshtml");
+
+                return View(new SearhBookViewModel
+                {
+                    Books = books
+                });
+
+            }
+            else
+                return View("~/Views/Book/SearchResultNotFound.cshtml");
+          
+            
     }
         
        

@@ -84,12 +84,12 @@ namespace MVC_Webshop.Data
             /// 
             
             string userId = Guid.NewGuid().ToString();
-            string roleId = Guid.NewGuid().ToString();
+            string AdminroleId = Guid.NewGuid().ToString();
             string userRoleId = Guid.NewGuid().ToString();
 
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
-                Id = roleId,
+                Id = AdminroleId,
                 Name = "admin",
                 NormalizedName = "ADMIN",
                 
@@ -111,8 +111,8 @@ namespace MVC_Webshop.Data
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
                 UserId = userId,
-                RoleId = roleId
-                
+                RoleId = AdminroleId
+
             });
 
 

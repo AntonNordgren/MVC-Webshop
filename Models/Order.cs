@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC_Webshop.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -18,6 +19,9 @@ namespace MVC_Webshop.Models
 
         // Navigation properties
         public List<OrderItem> OrderItems { get; set; }
+
+        public string UserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
     }
 }

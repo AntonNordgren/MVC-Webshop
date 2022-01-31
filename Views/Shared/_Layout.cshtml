@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MVC_Webshop</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  
+
 
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/cart.css" />
-    <link rel="stylesheet" href="~/css/s.css" />
+    
 </head>
 <body class="container">
     <header>
@@ -28,12 +30,13 @@
 
                     
                     <div class="col">
-                        <form class="form-inline d-flex search-bar" method="get">
+                        <form class="form-inline d-flex search-bar" method="get" asp-controller="Book" asp-action="SearchResult" asp-route-SearchText="SearchText">
                             @using (Html.BeginForm("SearchResult", "search", FormMethod.Get))
                             {
-                                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" >
-                                <button class="btn btn-secondary my-2 my-sm-0 m-1" type="submit" asp-controller="Book" asp-action="SearchResult" asp-route-SearchText="search">Search</button>
+                                <input id="SearchText"  class="form-control mr-sm-2" type="search" name="SearchText" placeholder="search" aria-label="Search">
+                                <button id="button" class="btn btn-secondary my-2 my-sm-0 m-1" type="submit" >Search</button>
                             }
+                            
                         </form>
                     </div>
 
@@ -123,7 +126,7 @@
                 </div>
 
                 <div>
-                    <ul>
+                   
                         @if (User.IsInRole("Admin"))
                         {
                             <p>Admin Account</p>
@@ -134,30 +137,11 @@
                         {
                             <p> User Account</p>
                         }
-                    </ul>
+                    
                 </div>
 
 
 
-                @*<ul class="navbar-nav">
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">Kategorier</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">Top 10</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">Rea</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">new</a>
-            </li>
-
-        </ul>*@
             </div>
 
 

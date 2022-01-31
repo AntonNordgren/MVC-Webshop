@@ -9,18 +9,19 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Basket</title>
+
 </head>
 
-<body>
+<body class="cart-body">
     <main>
         <div class="basket">
             <div class="basket-module">
                 <label for="promo-code">Enter a promotional code</label>
                 <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-                <button class="promo-code-cta">Apply</button>
+                <button id="cart-btn" class="promo-code-cta">Apply</button>
             </div>
             <div class="basket-labels">
-                <ul>
+                <ul id="ul-basket">
                     <li class="item item-heading">Item</li>
                     <li class="price">Price</li>
                     <li class="quantity">Quantity</li>
@@ -33,10 +34,10 @@
                     <div class="item">
 
                         <div class="product-image">
-                            <img src="@line.Book.ImageUrl" alt="Placholder Image 2" class="product-frame">
+                            <img id="cart-img" src="@line.Book.ImageUrl" alt="Placholder Image 2" class="product-frame">
                         </div>
                         <div class="product-details">
-                            <h1><strong><span class="item-quantity">@line.Quantity</span> X @line.Book.Title</strong> </h1>
+                            <h1 id="product-id"><strong><span class="item-quantity">@line.Quantity</span> X @line.Book.Title</strong> </h1>
                             <p class="remove">
                                 <a asp-controller="ShoppingCartActions" asp-action="RemoveFromCart" asp-route-bookId="@line.Book.Id">Remove</a>
                             </p>
@@ -54,8 +55,28 @@
                     <div class="price">@line.Book.UnitPrice.ToString()</div>
 
                     <div class="quantity">
-                        <input type="number" value="@line.Quantity" min="1" class="quantity-field"
-                               >
+
+                        <input type="number" value="1" min="1" class="quantity-field">
+
+
+                        <form method="get" asp-controller="ShoppingCartActions" asp-action="UpdateCart" asp-route-bookId="@line.Book.Id" asp-route-quantity="num">
+                            @using (Html.BeginForm("UpdateCart", "num", FormMethod.Get))
+                            {
+                                <input id="npt-quantity" type="number" value="@line.Quantity" min="1" class="quantity-field"
+                                       name="num">
+
+
+                            }
+
+                        </form>
+
+
+
+
+
+
+
+
                     </div>
 
                     <div class="subtotal"> @((line.Quantity * line.Book.UnitPrice).ToString())</div>
@@ -93,11 +114,12 @@
                     </div>
                 </div>
                 <div class="summary-checkout">
-                    <button class="checkout-cta">Go to Secure Checkout</button>
+                    <button id="cart-btn" class="checkout-cta">Go to Secure Checkout</button>
                 </div>
             </div>
         </aside>
     </main>
+    
 </body>
 
 </html>

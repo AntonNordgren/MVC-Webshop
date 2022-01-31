@@ -38,6 +38,19 @@ namespace MVC_Webshop.Models
             return new ShoppingCartActions(context) { CartId = cartId };
         }
 
+
+        // update cart 
+        public void UpdateCart(Book book, int quantity)
+        {
+            var cartItem = _bookStoreDbContext.CartItems.SingleOrDefault(
+                         i => i.Book.Id == book.Id && i.CartId == CartId);
+      
+                cartItem.Quantity = quantity;
+            
+            _bookStoreDbContext.SaveChanges();
+
+        }
+
         //Add books to the cart
         public void AddToCart(Book book, int quantity)
         {
@@ -91,10 +104,10 @@ namespace MVC_Webshop.Models
         // Get All the cart items
         public List<CartItem> GetCartItems()
         {
-            return CartItems ?? (CartItems =
+            return CartItems ??=
            _bookStoreDbContext.CartItems.Where(c => c.CartId == CartId)
                .Include(s => s.Book)
-               .ToList());
+               .ToList();
         }
 
         // Empty the shopping cart

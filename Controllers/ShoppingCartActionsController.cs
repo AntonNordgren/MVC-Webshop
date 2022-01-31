@@ -61,5 +61,17 @@ namespace MVC_Webshop.Controllers
             }
             return RedirectToAction("Index");
         }
+
+
+        public RedirectToActionResult UpdateCart(int bookId, int quantity)
+        {
+            var selectedbook = _bookRepository.AllBooks.FirstOrDefault(b => b.Id == bookId);
+
+            if (selectedbook != null)
+            {
+                _shoppingCartActions.UpdateCart(selectedbook , quantity);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
