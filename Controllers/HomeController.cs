@@ -25,14 +25,13 @@ namespace MVC_Webshop.Controllers
 
         public IActionResult Index(HomeViewModel viewModel)
         {
-           
 
 
             List<Book> allBooks = _bookRepository.AllBooks.ToList();
 
             viewModel.PopularBooks = _bookRepository.AllBooks.Select(x => x);
 
-            // Book testBook = _bookRepository.AllBooks.FirstOrDefault(book => book.Id == 1);
+            //Book testBook = _bookRepository.AllBooks.FirstOrDefault(book => book.Id == 1);
 
             // ViewBag.List = allBooks;
             // ViewData["Books"] = allBooks;
@@ -47,6 +46,8 @@ namespace MVC_Webshop.Controllers
         }
 
 
+        //    return PartialView("_LayoutOptions", layoutoptions);
+        //}
 
 
         public IActionResult Privacy()
