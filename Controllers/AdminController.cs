@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MVC_Webshop.Data;
 using MVC_Webshop.Models;
@@ -14,8 +15,9 @@ namespace MVC_Webshop.Controllers
     public class AdminController : Controller
     {
         private readonly BookStoreDbContext _context;
-        public AdminController(BookStoreDbContext context)
+        public AdminController(BookStoreDbContext context, UserManager<ApplicationUser> userManager)
         {
+            this.userManager = userManager;
             _context = context;
         }
         public IActionResult Index()
@@ -504,6 +506,124 @@ namespace MVC_Webshop.Controllers
 
             return View("AuthorEdit", vm);
         }
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        
+
+        [HttpGet]
+        public IActionResult ListUsers()
+        {
+            var users = userManager.Users;
+            return View(users);
+        }
+
+        public async Task<IActionResult> EditUser(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                return View("NotFoundUser");
+            }
+
+            // GetClaimsAsync retunrs the list of user Claims
+            var userClaims = await userManager.GetClaimsAsync(user);
+            // GetRolesAsync returns the list of user Roles
+            var userRoles = await userManager.GetRolesAsync(user);
+
+            var model = new EditUserViewModel
+            {
+                Email = user.Email,
+                City=user.City,
+                Country=user.City,
+                FirstName=user.FirstName,
+                LastName=user.LastName,
+                Address=user.Address,
+                PostalNumber=user.PostalNumber,
+                UserName=user.UserName,
+                Claims = userClaims.Select(c => c.Value).ToList(),
+                Roles = userRoles
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditRoles(EditUserViewModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {model.Id} cannot be found";
+                return View("NotFoundUser");
+            }
+            else
+            {
+                if (await userManager.IsInRoleAsync(user, "User"))
+                {
+                    var deletionResult = await userManager.RemoveFromRoleAsync(user, "User");
+                    var addResult = await userManager.AddToRoleAsync(user, "Admin");
+                }
+                else if(await userManager.IsInRoleAsync(user, "Admin"))
+                {
+                    var deletionResult = await userManager.RemoveFromRoleAsync(user, "Admin");
+                    var addResult = await userManager.AddToRoleAsync(user, "User");
+                }
+
+                var result = await userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("EditUser", new { Id = user.Id });
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View("EditUser", new { Id = user.Id });
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {model.Id} cannot be found";
+                return View("NotFoundUser");
+            }
+            else
+            {
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                user.City = model.City;
+                user.Address = model.Address;
+                user.Country = model.Country;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.PostalNumber = model.PostalNumber;
+
+                var result = await userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListUsers");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View(model);
+            }
+
+        }
+
 
     }
 }
