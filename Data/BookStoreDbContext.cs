@@ -90,7 +90,7 @@ namespace MVC_Webshop.Data
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
                 Id = AdminroleId,
-                Name = "admin",
+                Name = "Admin",
                 NormalizedName = "ADMIN",
                 
 

@@ -2,49 +2,49 @@
 
 namespace MVC_Webshop.Migrations
 {
-    public partial class databaseUpdated : Migration
+    public partial class databaseUpdated1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "b94bca5c-d895-4b99-b3be-6ae1fe4c88b9");
+                keyValue: "2d079f25-b0c0-4462-adca-349d63fd668e");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUserRoles",
                 keyColumns: new[] { "UserId", "RoleId" },
-                keyValues: new object[] { "a68d21e7-9ec3-4f5b-93c7-27d522c75a01", "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3" });
+                keyValues: new object[] { "7939b130-2006-464e-bcbf-3a1d0139f79e", "b2f5ec06-1f6e-4f7a-8ce3-2cb5cd3f4146" });
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3");
+                keyValue: "b2f5ec06-1f6e-4f7a-8ce3-2cb5cd3f4146");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "a68d21e7-9ec3-4f5b-93c7-27d522c75a01");
+                keyValue: "7939b130-2006-464e-bcbf-3a1d0139f79e");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "41ecac81-9ec5-4132-be37-23a8b9ef018f", "16f71ba2-c8ab-425b-a577-9109e0d5a1cc", "admin", "ADMIN" });
+                values: new object[] { "1fbe65dc-5cfd-4d21-a313-8c4c537af79b", "2038a001-7076-4f1a-9ab1-07e6ee9daf6f", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ff429aec-cb8d-4218-bd5d-19414c79dab6", "6eb7bb01-93f5-4b9a-9808-95d70aa39707", "User", "USER" });
+                values: new object[] { "0ea69ee4-06ce-4f0c-a9a6-c71ecb9cfd07", "eb76808f-9ca6-41e5-b17f-a371959f468e", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalNumber", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1a04a51e-e9c2-4297-86f4-f160359939a2", 0, null, null, "b5f3b3b0-714f-434c-a26c-ced14490cf05", null, "admin@bookstore.com", false, null, null, false, null, "ADMIN@BOOKSTORE.COM", "ADMIN@BOOKSTORE.COM", "AQAAAAEAACcQAAAAEF1ugeh/iOxBrQ8A1xcC5nRGebNouSzo3+0YdD/5uebGU0OSwLXlP+nzuVME3EbHug==", null, false, null, "258001ef-c9b3-4b34-9ea2-9cd9aaf416ef", false, "admin@bookstore.com" });
+                values: new object[] { "351c7b38-39d3-4f93-9833-38dd705fe2b2", 0, null, null, "2157f87e-0fd3-4033-89b8-c30bc3094552", null, "admin@bookstore.com", true, null, null, false, null, "ADMIN@BOOKSTORE.COM", "ADMIN@BOOKSTORE.COM", "AQAAAAEAACcQAAAAEKpM7fYdZqmF1l57eKs0uq9HruuZfZxLmfOVZAMoKTdWXKC31PUm5TDAk1jT0kG+sQ==", null, false, null, "667a1cbf-2701-4a96-bf45-98aa4e8d1fd6", false, "admin@bookstore.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[] { "1a04a51e-e9c2-4297-86f4-f160359939a2", "41ecac81-9ec5-4132-be37-23a8b9ef018f" });
+                values: new object[] { "351c7b38-39d3-4f93-9833-38dd705fe2b2", "1fbe65dc-5cfd-4d21-a313-8c4c537af79b" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -52,42 +52,42 @@ namespace MVC_Webshop.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "ff429aec-cb8d-4218-bd5d-19414c79dab6");
+                keyValue: "0ea69ee4-06ce-4f0c-a9a6-c71ecb9cfd07");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUserRoles",
                 keyColumns: new[] { "UserId", "RoleId" },
-                keyValues: new object[] { "1a04a51e-e9c2-4297-86f4-f160359939a2", "41ecac81-9ec5-4132-be37-23a8b9ef018f" });
+                keyValues: new object[] { "351c7b38-39d3-4f93-9833-38dd705fe2b2", "1fbe65dc-5cfd-4d21-a313-8c4c537af79b" });
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "41ecac81-9ec5-4132-be37-23a8b9ef018f");
+                keyValue: "1fbe65dc-5cfd-4d21-a313-8c4c537af79b");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "1a04a51e-e9c2-4297-86f4-f160359939a2");
+                keyValue: "351c7b38-39d3-4f93-9833-38dd705fe2b2");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3", "b227ea00-1066-4e0b-b837-07e011a39a40", "Admin", "ADMIN" });
+                values: new object[] { "b2f5ec06-1f6e-4f7a-8ce3-2cb5cd3f4146", "a1d1d562-97a9-4795-a3fd-75dfd81f83c2", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b94bca5c-d895-4b99-b3be-6ae1fe4c88b9", "e2cbf730-00f6-4e57-875d-badb4ba8e255", "User", "USER" });
+                values: new object[] { "2d079f25-b0c0-4462-adca-349d63fd668e", "4b613fea-f02e-4a9a-bf40-6427a0b17fd3", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalNumber", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a68d21e7-9ec3-4f5b-93c7-27d522c75a01", 0, null, null, "294b80d8-b596-45cd-811c-144c1bc90a1b", null, "admin@bookstore.com", false, null, null, false, null, "ADMIN@BOOKSTORE.COM", "ADMIN", "AQAAAAEAACcQAAAAEDW6EVq3GHCQuzs74Oz9ElDHlQqLVrxg5P5iUnH9pXjbRKHFWEh5wyp6cJvH5g5c5w==", null, false, null, "bf88a533-1d00-47c3-81db-a9c0a690487d", false, "admin@bookstore.com" });
+                values: new object[] { "7939b130-2006-464e-bcbf-3a1d0139f79e", 0, null, null, "36da0b5e-fac7-4c13-ac86-32f3cef75fa4", null, "admin@bookstore.com", true, null, null, false, null, "ADMIN@BOOKSTORE.COM", "ADMIN@BOOKSTORE.COM", "AQAAAAEAACcQAAAAEBziOQMILl9ZmJkpsLGlT4dSCwWxtIHrU5CSY7YCWofcxnB+Iu1CUNFPJxyUUGdc4A==", null, false, null, "469addcf-912d-45ba-a6b3-78a70b8a0b8c", false, "admin@bookstore.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[] { "a68d21e7-9ec3-4f5b-93c7-27d522c75a01", "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3" });
+                values: new object[] { "7939b130-2006-464e-bcbf-3a1d0139f79e", "b2f5ec06-1f6e-4f7a-8ce3-2cb5cd3f4146" });
         }
     }
 }
