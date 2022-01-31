@@ -28,7 +28,7 @@
                         </a>
                     </div>
 
-                    
+
                     <div class="col">
                         <form class="form-inline d-flex search-bar" method="get" asp-controller="Book" asp-action="SearchResult" asp-route-SearchText="SearchText">
                             @using (Html.BeginForm("SearchResult", "search", FormMethod.Get))
@@ -71,11 +71,12 @@
 
 
 
-                    </div>
+                </div>
             </div>
 
 
             <div class="navbar-second-container navbar navbar-expand p-0">
+
 
                 <div class="dropdown m-1">
                     <button class="btn shadow-none dropdown-toggle disabled"
@@ -85,43 +86,12 @@
                         Kategorier
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="">
-                        <li><a class="dropdown-item" href="#">Kokbok</a></li>
-                        <li><a class="dropdown-item" href="#">Romaner</a></li>
-                        <li><a class="dropdown-item" href="#">Fantasy</a></li>
-                    </ul>
-                </div>
 
-                <br />
+                        <li><a class="dropdown-item" href="/Category/?Genre=Food">Food</a></li>
+                        <li><a class="dropdown-item" href="/Category/?Genre=Detective">Detective</a></li>
+                        <li><a class="dropdown-item" href="/Category/?Genre=Kids">Kids</a></li>
 
-                <div class="dropdown m-1">
-                    <button class="btn shadow-none dropdown-toggle disabled"
-                            type="button"
-                            id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        Top 10
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="">
-                        <li><a class="dropdown-item" href="#">Kokbok</a></li>
-                        <li><a class="dropdown-item" href="#">Romaner</a></li>
-                        <li><a class="dropdown-item" href="#">Fantasy</a></li>
-                    </ul>
-          
-                   
-                </div>
 
-                <br />
-
-                <div class="dropdown m-1">
-                    <button class="btn shadow-none dropdown-toggle disabled"
-                            type="button"
-                            id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        Rea
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="">
-                        <li><a class="dropdown-item" href="#">Kokbok</a></li>
-                        <li><a class="dropdown-item" href="#">Romaner</a></li>
-                        <li><a class="dropdown-item" href="#">Fantasy</a></li>
                     </ul>
                 </div>
 
