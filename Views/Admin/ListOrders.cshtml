@@ -12,13 +12,18 @@
     <div class="card-header">
         Order Id : @order.Id
     </div>
-    <div class="card-body">
-        <h5 class="card-title">
-            @order.OrderDate
-            <a class="btn btn-outline-primary" asp-controller="Admin" asp-action="EditOrder" asp-route-id="@order.Id" style="float: right;">Edit</a>
-            <a href="#" class="btn btn-danger" style="float: right;">Delete</a>
-        </h5>
-    </div>
+    <form method="post" asp-controller="Admin" asp-action="DeleteOrder">
+        <div class="card-body">
+            <h5 class="card-title">
+                @order.OrderDate
+                <a class="btn btn-outline-primary" asp-controller="Admin" asp-action="EditOrder" asp-route-id="@order.Id" style="float: right;">Edit</a>
+                <input type="hidden" name="orderid" value="@order.Id"/>
+                <input type="hidden" name="userid" value="@order.UserId"/>
+                <button type="submit" class="btn btn-danger" style="float: right;">Delete</button>
+
+            </h5>
+    
+</div></form>
     <div class="card-footer">
 
     </div>
