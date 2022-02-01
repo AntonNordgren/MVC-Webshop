@@ -8,7 +8,9 @@ namespace MVC_Webshop.ViewModels
 {
     public class CategoryViewModel
     {
-        public string Category { get; set; }
-        public IEnumerable<Book> BooksByCategory { get; set; }
+        //public string Category { get; set; }
+        //public IEnumerable<Book> BooksByCategory { get; set; }
+
+        public BookLayoutViewModel CategoryBooksObject { get; set; }
     }
 }

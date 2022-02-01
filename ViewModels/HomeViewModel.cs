@@ -8,6 +8,6 @@ namespace MVC_Webshop.ViewModels
 {
     public class HomeViewModel
     {
-        public IEnumerable<Book> PopularBooks { get; set; }
+        public BookLayoutViewModel PopularBooksObject { get; set; }
     }
 }

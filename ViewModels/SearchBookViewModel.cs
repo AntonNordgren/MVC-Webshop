@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MVC_Webshop.ViewModels
 {
-    public class SearhBookViewModel
+    public class SearchBookViewModel
     {
-        public IEnumerable<Book> Books { get; set; }
+        // public IEnumerable<Book> Books { get; set; }
+        public BookLayoutViewModel SearchBooksObject { get; set; }
     }
 }

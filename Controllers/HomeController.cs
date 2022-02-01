@@ -23,20 +23,18 @@ namespace MVC_Webshop.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(HomeViewModel viewModel)
+        public IActionResult Index(HomeViewModel ViewModel)
         {
+            List<Book> ListOfBooks = _bookRepository.AllBooks.ToList();
 
+            BookLayoutViewModel PopularBooks = new BookLayoutViewModel("Popular Books", 2, ListOfBooks);
 
-            List<Book> allBooks = _bookRepository.AllBooks.ToList();
-
-            viewModel.PopularBooks = _bookRepository.AllBooks.Select(x => x);
-
-            //Book testBook = _bookRepository.AllBooks.FirstOrDefault(book => book.Id == 1);
+            ViewModel.PopularBooksObject = PopularBooks;
 
             // ViewBag.List = allBooks;
             // ViewData["Books"] = allBooks;
 
-            return View(viewModel);
+            return View(ViewModel);
         }
 
         [Route("/NotFound")]
