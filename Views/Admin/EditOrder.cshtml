@@ -23,37 +23,44 @@
         
     </table>
 </form>
-
+<h1>Order Items</h1>
     <table>
         @foreach (var book in Model.Books)
         {
         <tr>
             <td>@book.Id : @book.Title</td>
-            <td>@book.Id : @book.UnitPrice</td>
+            <td>Price : @book.UnitPrice</td>
+
             <td>
                 <form method="post" asp-controller="admin" asp-action="OrderItemEdit">
-                <select name="quantity">
-                    
-                @for (int i = 0; i < 100; i++)
-                {
-                    if (Model.OrderItems.Any(x => x.BookId == book.Id))
-                    {
-                        if (i == Model.OrderItems.First(x => x.BookId == book.Id).Quantity)
-                        {<option value="@i" selected >@i</option> }
-                        else
-                        {<option value="@i">@i</option> }
-                    }
-                    else
-                    {
-                        <option value="@i">@i</option>
-                    }   
-                }    
-                </select>
-                <input type="hidden" value="@book.Id" name="bookid"/>
-                <input type="hidden" value="@Model.Order.Id" name="orderid" />
-                <input type="Submit" value="update" />
+                    <select name="quantity">
+
+                        @for (int i = 0; i < 100; i++)
+                        {
+                            if (Model.OrderItems.Any(x => x.BookId == book.Id))
+                            {
+                                if (i == Model.OrderItems.First(x => x.BookId == book.Id).Quantity)
+                                {
+                                    <option value="@i" selected>@i</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        }
+                    </select>
+                    <input type="hidden" value="@book.Id" name="bookid" />
+                    <input type="hidden" value="@Model.Order.Id" name="orderid" />
+                    <input type="Submit" value="update" />
                 </form>
             </td>
+            
         </tr>
         }
+        <tr><td></td><td>Total: @Model.Order.TotalCost</td><td></td></tr>
     </table>
