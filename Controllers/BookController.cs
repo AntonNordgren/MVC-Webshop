@@ -35,25 +35,32 @@ namespace MVC_Webshop.Controllers
 
         //////////////// testing search 
 
-        public ViewResult SearchResult(string SearchText)
+        public ViewResult SearchResult(SearchBookViewModel ViewModel, string SearchText)
         {
             IEnumerable<Book> ListOfBooks = _bookRepository.SearchBookByTitle(SearchText);
 
-            if (!string.IsNullOrEmpty(SearchText))
-            {
-                var result = ListOfBooks.Where(s => s.Title.Contains(SearchText));
+            BookLayoutViewModel BooksBySearch = new BookLayoutViewModel("Search Result", 2, ListOfBooks);
 
-                ///    if(result.FirstOrDefault)
-                //       return View("~/Views/Book/SearchResultNotFound.cshtml");
+            ViewModel.SearchBooksObject = BooksBySearch;
 
-                return View(new SearhBookViewModel
-                {
-                    Books = books
-                });
 
-            }
-            else
-                return View("~/Views/Book/SearchResultNotFound.cshtml");
+            return View(ViewModel);
+
+            //if (!string.IsNullOrEmpty(SearchText))
+            //{
+            //    var result = ListOfBooks.Where(s => s.Title.Contains(SearchText));
+
+            //    ///    if(result.FirstOrDefault)
+            //    //       return View("~/Views/Book/SearchResultNotFound.cshtml");
+
+            //    return View(new SearhBookViewModel
+            //    {
+            //        Books = books
+            //    });
+
+            //}
+            //else
+            //    return View("~/Views/Book/SearchResultNotFound.cshtml");
 
 
 

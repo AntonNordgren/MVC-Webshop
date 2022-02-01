@@ -10,9 +10,9 @@ namespace MVC_Webshop.ViewModels
     {
         public int ColumnSize { get; set; }
         public string CardLayoutTitle { get; set; }
-        public List<Book> Books { get; set; }
+        public IEnumerable<Book> Books { get; set; }
 
-        public BookLayoutViewModel(string CardLayoutTitle, int ColumnSize, List<Book> Books)
+        public BookLayoutViewModel(string CardLayoutTitle, int ColumnSize, IEnumerable<Book> Books)
         {
             this.CardLayoutTitle = CardLayoutTitle;
             this.ColumnSize = ColumnSize;
