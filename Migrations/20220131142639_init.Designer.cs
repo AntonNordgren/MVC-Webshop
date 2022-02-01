@@ -4,14 +4,16 @@ using MVC_Webshop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVC_Webshop.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220131142639_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,25 +112,17 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-
                             Id = "880292de-3ee3-41c3-978a-133066867116",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "28509a05-5ba8-4cf4-890e-8b54031ceb23",
-
-                            
-
                             Email = "admin@bookstore.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@BOOKSTORE.COM",
                             NormalizedUserName = "ADMIN@BOOKSTORE.COM",
-
                             PasswordHash = "AQAAAAEAACcQAAAAEHsqW1r5QLGo7LcIT+5BOdiY4UVFfZ6uIRnY+J+D3WWtYPEofDnyqAIX9mIlBLAhGA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "8c2f5239-b787-4902-81a1-8f9e1f5f81f9",
-
-                           
-
                             TwoFactorEnabled = false,
                             UserName = "admin@bookstore.com"
                         });
@@ -381,19 +375,15 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-
                             Id = "6366c056-7b8c-4af7-a763-c6ab2880bd51",
                             ConcurrencyStamp = "f5c11072-dd14-49e4-bd6d-00f84cb1e189",
-
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-
                             Id = "e86f2bed-a361-46cc-9d5f-f3e84f536d01",
                             ConcurrencyStamp = "790fd854-5ae3-4f73-ac57-5345e0368520",
-
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -488,10 +478,8 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-
                             UserId = "880292de-3ee3-41c3-978a-133066867116",
                             RoleId = "6366c056-7b8c-4af7-a763-c6ab2880bd51"
-
                         });
                 });
 
