@@ -9,35 +9,34 @@ namespace MVC_Webshop.Models
     public class OrderRepository : IOrderRepository
     {
         private readonly BookStoreDbContext _bookStoreDbContext;
-        private readonly ShoppingCartActions _shoppingCart;
+        private readonly ShoppingCartActions _shoppingCartActions;
 
-        public OrderRepository(BookStoreDbContext bookStoreDbContext, ShoppingCartActions shoppingCart)
+        public OrderRepository(BookStoreDbContext bookStoreDbContext, ShoppingCartActions shoppingCartActions)
         {
             _bookStoreDbContext = bookStoreDbContext;
-            _shoppingCart = shoppingCart;
+            _shoppingCartActions = shoppingCartActions;
         }
 
         public void CreateOrder(Order order)
         {
             order.OrderDate = DateTime.Now;
 
-            var shoppingCartItems = _shoppingCart.CartItems;
-            // Fråga om Order Status  är korrekt??????????
+            var CartItems = _shoppingCartActions.CartItems;
+            order.TotalCost = _shoppingCartActions.GetCartTotal();
+            order.OrderItems = new List<OrderItem>();
 
-            //  order.OrderStatus = _shoppingCart.GetCartTotal(); ?????
 
             order.OrderItems = new List<OrderItem>();
-            //adding the order with its details ??????
+          
 
-            foreach (var shoppingCartItem in shoppingCartItems)
+            foreach (var CartItem in CartItems)
             {
                 var OrderItem = new OrderItem
                 {
-                    Quantity = shoppingCartItem.Quantity,/////<---- Fråga???
-                    // vi kan lägga mer grejer sedan
-
-                    BookId = shoppingCartItem.BookId,
-                    UnitPrice = shoppingCartItem.Book.UnitPrice,
+                    Quantity = CartItem.Quantity,
+                    BookId = CartItem.BookId,
+                    Book = CartItem.Book,
+                    UnitPrice = CartItem.Book.UnitPrice,
                 };
 
                 order.OrderItems.Add(OrderItem);

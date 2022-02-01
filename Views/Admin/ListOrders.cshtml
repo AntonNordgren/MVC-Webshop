@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model OrderViewModel
+<h1>ORDERS</h1>
+<a class="btn btn-outline-secondary" asp-controller="Admin" asp-action="CreateOrder" >New Order</a>
+@foreach (var order in Model.Orders)
+    {
+<div class="card mb-3">
+    <div class="card-header">
+        Order Id : @order.Id
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            @order.OrderDate
+            <a class="btn btn-outline-primary" asp-controller="Admin" asp-action="EditOrder" asp-route-id="@order.Id" style="float: right;">Edit</a>
+            <a href="#" class="btn btn-danger" style="float: right;">Delete</a>
+        </h5>
+    </div>
+    <div class="card-footer">
+
+    </div>
+</div>
+    }

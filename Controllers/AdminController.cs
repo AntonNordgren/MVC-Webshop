@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Webshop.Controllers
 {
-    [Authorize (Roles = "Admin")]
+    //[Authorize (Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly BookStoreDbContext _context;
@@ -624,6 +624,97 @@ namespace MVC_Webshop.Controllers
 
         }
 
+        public IActionResult ListOrders(string id)
+        {
+            OrderViewModel model=new OrderViewModel();
+            model.Orders = _context.Orders.Where(x=>x.UserId==id).ToList();
+            return View(model);
+        }
+        public IActionResult EditOrder(string id)
+        {
+            OrderViewModel model = new OrderViewModel();
+            model.Order = _context.Orders.First(x => x.Id.ToString() == id);
+            model.OrderItems = _context.OrderItems.ToList().FindAll(x => x.OrderId == model.Order.Id);
+            model.Books = _context.Books.ToList();
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult GeneralOrderEdit(string id, string notes, string status, string date)
+        {
+            notes = notes == null ? "" : notes;
+            status = status == null ? "" : status;
+            date = date == null ? DateTime.Now.ToString() : date;
+
+            var order = _context.Orders.First(a => a.Id == int.Parse(id));
+            order.Notes = notes;
+            order.OrderStatus = status;
+            order.OrderDate = DateTime.Parse(date);
+            _context.SaveChanges();
+            return RedirectToAction("EditOrder", new { Id = order.Id });
+        }
+        public IActionResult OrderItemEdit(string orderid,string bookid,string quantity)
+        {
+            var order = _context.Orders.First(a => a.Id == int.Parse(orderid));
+            var book = _context.Books.First(a => a.Id == int.Parse(bookid));
+            
+            if(_context.OrderItems.Any(x=> (x.BookId == int.Parse(bookid)) && (x.OrderId == int.Parse(orderid))) )
+            {
+                var bo = _context.OrderItems.First(x => (x.BookId == int.Parse(bookid)) && (x.OrderId == int.Parse(orderid)));
+                if (quantity == "0")
+                {
+                    
+                    _context.OrderItems.Remove(bo);
+                }
+                else
+                {
+                    bo.Quantity = int.Parse(quantity);
+                    bo.UnitPrice = book.UnitPrice;
+                    bo.Discount = 0;
+                    
+                }
+            }
+            else
+            {
+                if (quantity != "0")
+                {
+                    _context.Add(new OrderItem
+                    {
+                        Quantity = int.Parse(quantity),
+                        UnitPrice = book.UnitPrice,
+                        Discount = 0,
+                        BookId = int.Parse(bookid),
+                        OrderId= int.Parse(orderid)
+                    }) ;
+                    
+                }
+            }
+            _context.SaveChanges();
+            return RedirectToAction("EditOrder", new { Id = order.Id });
+        }
+
+        public IActionResult CreateOrder()
+        {
+            var mylist = _context.Users.ToList();
+            return View(mylist);
+        }
+        [HttpPost]
+        public IActionResult GeneralOrderCreate(string userid, string notes, string status)
+        {
+            notes = notes == null ? "" : notes;
+            status = status == null ? "" : status;
+            _context.Add(new Order { OrderStatus = status, Notes = notes, UserId = userid, OrderDate=DateTime.Now, TotalCost=0 });
+            _context.SaveChanges();
+            return RedirectToAction("ListOrders", new { Id = userid });
+        }
+        [HttpPost]
+        public IActionResult DeleteOrder(string orderid,string userid)
+        {
+            _context.OrderItems.RemoveRange(_context.OrderItems.Where(x => x.OrderId == int.Parse(orderid)));
+            _context.SaveChanges();
+            
+            return RedirectToAction("ListOrders", new { Id = userid });
+        }
 
     }
 }

@@ -143,22 +143,31 @@ namespace MVC_Webshop.Data
                             OrderDate= new DateTime(2022,01,02),
                             TotalCost=0,
                             OrderStatus="Shipped",
-                            Notes="test order shipped"
+                            Notes="test order shipped",
+                            UserId=context.Users.First(a=>a.Email=="user2@bookstore.com").Id
                         },
                         new Order {
                             OrderDate= new DateTime(2022,01,12),
                             TotalCost=0,
                             OrderStatus="Not Shipped",
-                            Notes="test order not shipped"
+                            Notes="test order not shipped",
+                            UserId=context.Users.First(a=>a.Email=="user2@bookstore.com").Id
                         },
                         new Order {
                             OrderDate= new DateTime(2022,01,12),
                             TotalCost=0,
                             OrderStatus="Canceled",
-                            Notes="test order canceled"
+                            Notes="test order canceled",
+                            UserId=context.Users.First(a=>a.Email=="user3@bookstore.com").Id
+                        },
+                        new Order {
+                            OrderDate= new DateTime(2022,01,13),
+                            TotalCost=0,
+                            OrderStatus="Not Shipped",
+                            Notes="test order h1",
+                            UserId=context.Users.First(a=>a.Email=="user3@bookstore.com").Id
                         }
-
-                    });
+                    }) ;
                 context.SaveChanges();
             }
             if (!context.OrderItems.Any()) //add example orderitems
@@ -169,7 +178,7 @@ namespace MVC_Webshop.Data
                         {
 
                             Quantity=2,
-                            UnitPrice=10,
+                            UnitPrice=context.Books.First(a=>a.Id==1).UnitPrice,
                             Discount=0,
                             BookId=1,
                             OrderId=1
@@ -179,7 +188,7 @@ namespace MVC_Webshop.Data
                         {
 
                             Quantity=1,
-                            UnitPrice=20,
+                            UnitPrice=context.Books.First(a=>a.Id==2).UnitPrice,
                             Discount=0,
                             BookId=2,
                             OrderId=1
@@ -189,7 +198,7 @@ namespace MVC_Webshop.Data
                         {
 
                             Quantity=1,
-                            UnitPrice=15,
+                            UnitPrice=context.Books.First(a=>a.Id==3).UnitPrice,
                             Discount=0,
                             BookId=3,
                             OrderId=2
@@ -199,12 +208,22 @@ namespace MVC_Webshop.Data
                         {
 
                             Quantity=3,
-                            UnitPrice=20,
+                            UnitPrice=context.Books.First(a=>a.Id==2).UnitPrice,
                             Discount=0,
                             BookId=2,
                             OrderId=3
 
-                        }
+                        },
+                        new OrderItem
+                        {
+
+                            Quantity=2,
+                            UnitPrice=context.Books.First(a=>a.Id==4).UnitPrice,
+                            Discount=0,
+                            BookId=2,
+                            OrderId=4
+
+                        },
                     });
                 context.SaveChanges();
             }

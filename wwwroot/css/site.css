@@ -142,3 +142,9 @@ footer {
     position: absolute;
     bottom: 15px;
 }
+
+.home-link {
+    border: solid;
+    padding: 12px 16px;
+    cursor: pointer;
+}
