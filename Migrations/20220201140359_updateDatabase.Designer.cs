@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Webshop.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    [Migration("20220131142229_databaseUpdated1")]
-    partial class databaseUpdated1
+    [Migration("20220201140359_updateDatabase")]
+    partial class updateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,19 +112,51 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "351c7b38-39d3-4f93-9833-38dd705fe2b2",
+                            Id = "0d1b3693-5f9f-48a0-9d7b-4c184b7f8337",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2157f87e-0fd3-4033-89b8-c30bc3094552",
+                            ConcurrencyStamp = "bfa44338-21a5-409a-ba56-45a1345281e8",
                             Email = "admin@bookstore.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@BOOKSTORE.COM",
                             NormalizedUserName = "ADMIN@BOOKSTORE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKpM7fYdZqmF1l57eKs0uq9HruuZfZxLmfOVZAMoKTdWXKC31PUm5TDAk1jT0kG+sQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE/qNI8w4ugpGbXVSuD4hWvxuXmQ1gEldf8lrlkgDzap5t7ZXZHah+ye9I6J23+WCA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "667a1cbf-2701-4a96-bf45-98aa4e8d1fd6",
+                            SecurityStamp = "6631b731-c5a7-4e37-9672-4306b7c1e71b",
                             TwoFactorEnabled = false,
                             UserName = "admin@bookstore.com"
+                        },
+                        new
+                        {
+                            Id = "5381cb1d-2283-4f09-a939-4c0de02ae5fd",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1168aa9c-02c7-4651-b750-6397b4332e89",
+                            Email = "user2@bookstore.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER2@BOOKSTORE.COM",
+                            NormalizedUserName = "USER2@BOOKSTORE.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPWTg/MNks0RXUf6mj0Vwpx2HhVRTCICAZ1uKt5VCeUE10pN+AySZqAW3AMwasSQZQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "746b27f7-3d59-4e11-9064-4217f2f14aac",
+                            TwoFactorEnabled = false,
+                            UserName = "user2@bookstore.com"
+                        },
+                        new
+                        {
+                            Id = "cdc42382-2b44-4193-8f67-b6e621be4f3c",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "00a43696-b1d5-4cb9-953d-70115d76e502",
+                            Email = "user3@bookstore.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER3@BOOKSTORE.COM",
+                            NormalizedUserName = "USER3@BOOKSTORE.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEr72sdNppodS8q0cjlSNKfrPmHta3BiHaaDN7M43w4RxCaVSTPNsekyGK9ZlUKp+w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b1178b98-e4be-4ab9-9d98-83a9152640ec",
+                            TwoFactorEnabled = false,
+                            UserName = "user3@bookstore.com"
                         });
                 });
 
@@ -375,15 +407,15 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1fbe65dc-5cfd-4d21-a313-8c4c537af79b",
-                            ConcurrencyStamp = "2038a001-7076-4f1a-9ab1-07e6ee9daf6f",
+                            Id = "db9ea5cc-1a8c-42e7-b567-0acc289a63ba",
+                            ConcurrencyStamp = "17d0bd0c-6794-4a9b-86bf-1463c6494ee9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0ea69ee4-06ce-4f0c-a9a6-c71ecb9cfd07",
-                            ConcurrencyStamp = "eb76808f-9ca6-41e5-b17f-a371959f468e",
+                            Id = "a297ac74-8c6e-4d93-b2b7-a40c4e1d5fe4",
+                            ConcurrencyStamp = "ed578396-ca70-456c-b6de-7942f1d0876b",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -478,8 +510,18 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "351c7b38-39d3-4f93-9833-38dd705fe2b2",
-                            RoleId = "1fbe65dc-5cfd-4d21-a313-8c4c537af79b"
+                            UserId = "0d1b3693-5f9f-48a0-9d7b-4c184b7f8337",
+                            RoleId = "db9ea5cc-1a8c-42e7-b567-0acc289a63ba"
+                        },
+                        new
+                        {
+                            UserId = "5381cb1d-2283-4f09-a939-4c0de02ae5fd",
+                            RoleId = "a297ac74-8c6e-4d93-b2b7-a40c4e1d5fe4"
+                        },
+                        new
+                        {
+                            UserId = "cdc42382-2b44-4193-8f67-b6e621be4f3c",
+                            RoleId = "a297ac74-8c6e-4d93-b2b7-a40c4e1d5fe4"
                         });
                 });
 

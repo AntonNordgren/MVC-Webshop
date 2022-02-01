@@ -21,25 +21,26 @@ namespace MVC_Webshop.Models
         {
             order.OrderDate = DateTime.Now;
 
-            var CartItems = _shoppingCartActions.CartItems;
+            var cartItems = _shoppingCartActions.CartItems;
             order.TotalCost = _shoppingCartActions.GetCartTotal();
             order.OrderItems = new List<OrderItem>();
 
 
-            order.OrderItems = new List<OrderItem>();
+            //order.OrderItems = new List<OrderItem>();
           
 
-            foreach (var CartItem in CartItems)
+            foreach (var cartItem in cartItems)
             {
-                var OrderItem = new OrderItem
+                var orderItem = new OrderItem
                 {
-                    Quantity = CartItem.Quantity,
-                    BookId = CartItem.BookId,
-                    Book = CartItem.Book,
-                    UnitPrice = CartItem.Book.UnitPrice,
+                    Quantity = cartItem.Quantity,
+                    UnitPrice = cartItem.Book.UnitPrice,
+                    Discount = 0,
+                    BookId = cartItem.BookId,
+                    OrderId = cartItem.Id,  
                 };
 
-                order.OrderItems.Add(OrderItem);
+                order.OrderItems.Add(orderItem);
             }
 
             _bookStoreDbContext.Orders.Add(order);
