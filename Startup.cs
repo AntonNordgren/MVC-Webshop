@@ -52,7 +52,7 @@ namespace MVC_Webshop
             //.AddDefaultTokenProviders();
 
             services.AddDefaultIdentity<ApplicationUser>
-                (options => options.SignIn.RequireConfirmedAccount = true)
+                (options => options.SignIn.RequireConfirmedAccount = false)
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<BookStoreDbContext>()
             .AddDefaultUI().AddDefaultTokenProviders(); 
@@ -72,6 +72,7 @@ namespace MVC_Webshop
             services.AddHttpContextAccessor();
             services.AddSession();
             services.AddRazorPages();
+
 
 
             //dependency injection  

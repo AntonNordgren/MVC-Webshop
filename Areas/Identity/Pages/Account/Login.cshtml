@@ -36,10 +36,14 @@
                 </div>
                 <div class="form-group">
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        <br />
+                        
                     </p>
                     <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        <br />
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        <br />
                     </p>
                 </div>
             </form>
@@ -47,17 +51,25 @@
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h4>Use another service to log in.</h4>
+            <h4>The Challange... BookStore.com</h4>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
+                        <div>
+                            <p>
+                                Welcome to BookStore Website. Please enter your email address and a password to login to your account.
+                            </p>
+                            <p>
+                                For more information or support, please email us on support@bookstore.com
+                            </p>
+                            <p>
+                                <img src="~/img/Logo.png"
+                                     width="250"
+                                     class="logo" />
+
+                            </p>
+                        </div>
                 }
                 else
                 {
