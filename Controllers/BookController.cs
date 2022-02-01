@@ -37,14 +37,14 @@ namespace MVC_Webshop.Controllers
 
         public ViewResult SearchResult(string SearchText)
         {
-            IEnumerable<Book> books;
-           books = _bookRepository.SearchBookByTitle(SearchText);
+            IEnumerable<Book> ListOfBooks = _bookRepository.SearchBookByTitle(SearchText);
+
             if (!string.IsNullOrEmpty(SearchText))
             {
-                var result = books.Where(s => s.Title.Contains(SearchText));
+                var result = ListOfBooks.Where(s => s.Title.Contains(SearchText));
 
-            ///    if(result.FirstOrDefault)
-             //       return View("~/Views/Book/SearchResultNotFound.cshtml");
+                ///    if(result.FirstOrDefault)
+                //       return View("~/Views/Book/SearchResultNotFound.cshtml");
 
                 return View(new SearhBookViewModel
                 {
@@ -54,11 +54,48 @@ namespace MVC_Webshop.Controllers
             }
             else
                 return View("~/Views/Book/SearchResultNotFound.cshtml");
-          
-            
-    }
-        
-       
+
+
+
+
+            // IEnumerable<Book> books;
+            //books = _bookRepository.SearchBookByTitle(SearchText);
+            // if (!string.IsNullOrEmpty(SearchText))
+            // {
+            //     var result = books.Where(s => s.Title.Contains(SearchText));
+
+            // ///    if(result.FirstOrDefault)
+            //  //       return View("~/Views/Book/SearchResultNotFound.cshtml");
+
+            //     return View(new SearhBookViewModel
+            //     {
+            //         Books = books
+            //     });
+
+            // }
+            // else
+            //     return View("~/Views/Book/SearchResultNotFound.cshtml");
+        }
+
+        //public IActionResult Index(CategoryViewModel ViewModel, string Genre)
+        //{
+        //    List<Book> ListOfBooks = _bookRepository.AllBooks.Where(book => book.Genre.Type == Genre).ToList();
+
+        //    BookLayoutViewModel BooksByCategory = new BookLayoutViewModel(Genre, 2, ListOfBooks);
+
+        //    ViewModel.CategoryBooksObject = BooksByCategory;
+
+        //    // CategoryViewModel ViewModel = new CategoryViewModel();
+
+        //    // ViewModel.CategoryBooksObject= Genre;
+        //    // ViewModel.CategoryBooksObject.Books = _bookRepository.AllBooks.Where(book => book.Genre.Type == Genre);
+
+        //    // viewModel.PopularBooks = _bookRepository.AllBooks.Select(x => x);
+
+        //    return View(ViewModel);
+        //}
+
+
 
     }
 }
