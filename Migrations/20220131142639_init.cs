@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MVC_Webshop.Migrations
 {
-    public partial class Databasecreated : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -76,22 +76,6 @@ namespace MVC_Webshop.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Genre", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Order",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderDate = table.Column<DateTime>(nullable: false),
-                    TotalCost = table.Column<decimal>(nullable: false),
-                    OrderStatus = table.Column<string>(nullable: true),
-                    Notes = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Order", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,6 +198,30 @@ namespace MVC_Webshop.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderDate = table.Column<DateTime>(nullable: false),
+                    TotalCost = table.Column<decimal>(nullable: false),
+                    OrderStatus = table.Column<string>(nullable: true),
+                    Notes = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Order_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Book",
                 columns: table => new
                 {
@@ -328,22 +336,22 @@ namespace MVC_Webshop.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3", "b227ea00-1066-4e0b-b837-07e011a39a40", "Admin", "ADMIN" });
+                values: new object[] { "6366c056-7b8c-4af7-a763-c6ab2880bd51", "f5c11072-dd14-49e4-bd6d-00f84cb1e189", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b94bca5c-d895-4b99-b3be-6ae1fe4c88b9", "e2cbf730-00f6-4e57-875d-badb4ba8e255", "User", "USER" });
+                values: new object[] { "e86f2bed-a361-46cc-9d5f-f3e84f536d01", "790fd854-5ae3-4f73-ac57-5345e0368520", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalNumber", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a68d21e7-9ec3-4f5b-93c7-27d522c75a01", 0, null, null, "294b80d8-b596-45cd-811c-144c1bc90a1b", null, "admin@bookstore.com", false, null, null, false, null, "ADMIN@BOOKSTORE.COM", "ADMIN", "AQAAAAEAACcQAAAAEDW6EVq3GHCQuzs74Oz9ElDHlQqLVrxg5P5iUnH9pXjbRKHFWEh5wyp6cJvH5g5c5w==", null, false, null, "bf88a533-1d00-47c3-81db-a9c0a690487d", false, "admin@bookstore.com" });
+                values: new object[] { "880292de-3ee3-41c3-978a-133066867116", 0, null, null, "28509a05-5ba8-4cf4-890e-8b54031ceb23", null, "admin@bookstore.com", true, null, null, false, null, "ADMIN@BOOKSTORE.COM", "ADMIN@BOOKSTORE.COM", "AQAAAAEAACcQAAAAEHsqW1r5QLGo7LcIT+5BOdiY4UVFfZ6uIRnY+J+D3WWtYPEofDnyqAIX9mIlBLAhGA==", null, false, null, "8c2f5239-b787-4902-81a1-8f9e1f5f81f9", false, "admin@bookstore.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[] { "a68d21e7-9ec3-4f5b-93c7-27d522c75a01", "6ce14f62-d27d-4736-bd9b-bdfdaee1ddd3" });
+                values: new object[] { "880292de-3ee3-41c3-978a-133066867116", "6366c056-7b8c-4af7-a763-c6ab2880bd51" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -410,6 +418,11 @@ namespace MVC_Webshop.Migrations
                 column: "BookId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Order_ApplicationUserId",
+                table: "Order",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Order Items_BookId",
                 table: "Order Items",
                 column: "BookId");
@@ -450,9 +463,6 @@ namespace MVC_Webshop.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Author");
 
             migrationBuilder.DropTable(
@@ -466,6 +476,9 @@ namespace MVC_Webshop.Migrations
 
             migrationBuilder.DropTable(
                 name: "Publisher");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

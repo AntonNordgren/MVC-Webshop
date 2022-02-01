@@ -86,11 +86,12 @@ namespace MVC_Webshop.Data
             string userId = Guid.NewGuid().ToString();
             string AdminroleId = Guid.NewGuid().ToString();
             string userRoleId = Guid.NewGuid().ToString();
-
+            string userId2 = Guid.NewGuid().ToString();
+            string userId3 = Guid.NewGuid().ToString();
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
                 Id = AdminroleId,
-                Name = "admin",
+                Name = "Admin",
                 NormalizedName = "ADMIN",
                 
 
@@ -126,6 +127,41 @@ namespace MVC_Webshop.Data
                 Id = userRoleId,
                 Name = "User",
                 NormalizedName = "USER",
+
+            });
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            {
+                Id = userId2,
+                Email = "user2@bookstore.com",
+                NormalizedEmail = "USER2@BOOKSTORE.COM",
+                UserName = "user2@bookstore.com",
+                NormalizedUserName = "USER2@BOOKSTORE.COM",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "user2")
+            });
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                UserId = userId2,
+                RoleId = userRoleId
+
+            });
+
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            {
+                Id = userId3,
+                Email = "user3@bookstore.com",
+                NormalizedEmail = "USER3@BOOKSTORE.COM",
+                UserName = "user3@bookstore.com",
+                NormalizedUserName = "USER3@BOOKSTORE.COM",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "user3")
+            });
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                UserId = userId3,
+                RoleId = userRoleId
 
             });
 
