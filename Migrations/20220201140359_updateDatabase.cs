@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MVC_Webshop.Migrations
 {
-    public partial class init : Migration
+    public partial class updateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -336,22 +336,36 @@ namespace MVC_Webshop.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "6366c056-7b8c-4af7-a763-c6ab2880bd51", "f5c11072-dd14-49e4-bd6d-00f84cb1e189", "Admin", "ADMIN" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "e86f2bed-a361-46cc-9d5f-f3e84f536d01", "790fd854-5ae3-4f73-ac57-5345e0368520", "User", "USER" });
+                values: new object[,]
+                {
+                    { "db9ea5cc-1a8c-42e7-b567-0acc289a63ba", "17d0bd0c-6794-4a9b-86bf-1463c6494ee9", "Admin", "ADMIN" },
+                    { "a297ac74-8c6e-4d93-b2b7-a40c4e1d5fe4", "ed578396-ca70-456c-b6de-7942f1d0876b", "User", "USER" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalNumber", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "880292de-3ee3-41c3-978a-133066867116", 0, null, null, "28509a05-5ba8-4cf4-890e-8b54031ceb23", null, "admin@bookstore.com", true, null, null, false, null, "ADMIN@BOOKSTORE.COM", "ADMIN@BOOKSTORE.COM", "AQAAAAEAACcQAAAAEHsqW1r5QLGo7LcIT+5BOdiY4UVFfZ6uIRnY+J+D3WWtYPEofDnyqAIX9mIlBLAhGA==", null, false, null, "8c2f5239-b787-4902-81a1-8f9e1f5f81f9", false, "admin@bookstore.com" });
+                values: new object[,]
+                {
+                    { "0d1b3693-5f9f-48a0-9d7b-4c184b7f8337", 0, null, null, "bfa44338-21a5-409a-ba56-45a1345281e8", null, "admin@bookstore.com", true, null, null, false, null, "ADMIN@BOOKSTORE.COM", "ADMIN@BOOKSTORE.COM", "AQAAAAEAACcQAAAAEE/qNI8w4ugpGbXVSuD4hWvxuXmQ1gEldf8lrlkgDzap5t7ZXZHah+ye9I6J23+WCA==", null, false, null, "6631b731-c5a7-4e37-9672-4306b7c1e71b", false, "admin@bookstore.com" },
+                    { "5381cb1d-2283-4f09-a939-4c0de02ae5fd", 0, null, null, "1168aa9c-02c7-4651-b750-6397b4332e89", null, "user2@bookstore.com", true, null, null, false, null, "USER2@BOOKSTORE.COM", "USER2@BOOKSTORE.COM", "AQAAAAEAACcQAAAAEPWTg/MNks0RXUf6mj0Vwpx2HhVRTCICAZ1uKt5VCeUE10pN+AySZqAW3AMwasSQZQ==", null, false, null, "746b27f7-3d59-4e11-9064-4217f2f14aac", false, "user2@bookstore.com" },
+                    { "cdc42382-2b44-4193-8f67-b6e621be4f3c", 0, null, null, "00a43696-b1d5-4cb9-953d-70115d76e502", null, "user3@bookstore.com", true, null, null, false, null, "USER3@BOOKSTORE.COM", "USER3@BOOKSTORE.COM", "AQAAAAEAACcQAAAAEEr72sdNppodS8q0cjlSNKfrPmHta3BiHaaDN7M43w4RxCaVSTPNsekyGK9ZlUKp+w==", null, false, null, "b1178b98-e4be-4ab9-9d98-83a9152640ec", false, "user3@bookstore.com" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[] { "880292de-3ee3-41c3-978a-133066867116", "6366c056-7b8c-4af7-a763-c6ab2880bd51" });
+                values: new object[] { "0d1b3693-5f9f-48a0-9d7b-4c184b7f8337", "db9ea5cc-1a8c-42e7-b567-0acc289a63ba" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "5381cb1d-2283-4f09-a939-4c0de02ae5fd", "a297ac74-8c6e-4d93-b2b7-a40c4e1d5fe4" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "cdc42382-2b44-4193-8f67-b6e621be4f3c", "a297ac74-8c6e-4d93-b2b7-a40c4e1d5fe4" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

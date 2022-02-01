@@ -129,7 +129,7 @@ footer {
 }
 
 .home-link {
-    border: solid;
+    border: none;
     padding: 12px 16px;
     cursor: pointer;
 }

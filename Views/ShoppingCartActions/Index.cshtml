@@ -15,89 +15,97 @@
 
 <body class="cart-body">
     <main>
-        <div class="basket">
-            <div class="basket-module">
-                <label for="promo-code">Enter a promotional code</label>
-                <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-                <button id="cart-btn" class="promo-code-cta">Apply</button>
-            </div>
-            <div class="basket-labels">
-                <ul id="ul-basket">
-                    <li class="item item-heading">Item</li>
-                    <li class="price">Price</li>
-                    <li class="quantity">Quantity</li>
-                    <li class="subtotal">Subtotal</li>
-                </ul>
-            </div>
-            <div class="basket-product">
-                @foreach (var line in Model.ShoppingCartActions.CartItems)
-                {
-                    <div class="item">
+        <form asp-controller="Order" asp-action="Checkout" method="post" class="form-horizontal" role="form">
 
-                        <div class="product-image">
-                            <img id="cart-img" src="@line.Book.ImageUrl" alt="Placholder Image 2" class="product-frame">
+            <div class="basket">
+                <div class="basket-module">
+                    <label for="promo-code">Enter a promotional code</label>
+                    <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
+                    <button id="cart-btn" class="promo-code-cta">Apply</button>
+                </div>
+                <div class="basket-labels">
+                    <ul id="ul-basket">
+                        <li class="item item-heading">Item</li>
+                        <li class="price">Price</li>
+                        <li class="quantity">Quantity</li>
+                        <li class="subtotal">Subtotal</li>
+                    </ul>
+                </div>
+
+
+                <div class="basket-product">
+                    @foreach (var line in Model.ShoppingCartActions.CartItems)
+                    {
+                        <div class="item">
+
+                            <div class="product-image">
+                                <img id="cart-img" src="@line.Book.ImageUrl" alt="Placholder Image 2" class="product-frame">
+                            </div>
+                            <div class="product-details">
+                                <h1 id="product-id"><strong><span class="item-quantity">@line.Quantity</span> X @line.Book.Title</strong> </h1>
+                                <p class="remove">
+                                    <a asp-controller="ShoppingCartActions" asp-action="RemoveFromCart" asp-route-bookId="@line.Book.Id">Remove</a>
+                                </p>
+                                <p>
+                                    Language: <strong>@line.Book.Language</strong><br>
+                                    ISBN: <strong>@line.Book.Isbn</strong><br>
+                                    Total Pages: <strong>@line.Book.TotalPage</strong>
+                                </p>
+
+                                <p class="stockStatus"> IN STOCK: <strong>@line.Book.Quantity</strong><br></p>
+
+
+                            </div>
                         </div>
-                        <div class="product-details">
-                            <h1 id="product-id"><strong><span class="item-quantity">@line.Quantity</span> X @line.Book.Title</strong> </h1>
-                            <p class="remove">
-                                <a asp-controller="ShoppingCartActions" asp-action="RemoveFromCart" asp-route-bookId="@line.Book.Id">Remove</a>
-                            </p>
-                            <p>
-                                Language: <strong>@line.Book.Language</strong><br>
-                                ISBN: <strong>@line.Book.Isbn</strong><br>
-                                Total Pages: <strong>@line.Book.TotalPage</strong>
-                            </p>
+                        <div class="price">@line.Book.UnitPrice.ToString()</div>
 
-                            <p class="stockStatus"> IN STOCK: <strong>@line.Book.Quantity</strong><br></p>
+                        <div class="quantity">
+                            <strong>@line.Quantity</strong><br>
+                        </div>
 
-
+                        <div class="subtotal"> @((line.Quantity * line.Book.UnitPrice).ToString())</div>
+                    }
+                </div>
+            </div>
+            <aside>
+                <div class="summary">
+                    <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+                    <div class="summary-subtotal">
+                        <div class="subtotal-title">Subtotal</div>
+                        <div class="subtotal-value final-value" id="basket-subtotal">@Model.CartTotal.ToString("n2")</div>
+                        <div class="summary-promo hide">
+                            <div class="promo-title">Promotion</div>
+                            <div class="promo-value final-value" id="basket-promo"></div>
                         </div>
                     </div>
-                    <div class="price">@line.Book.UnitPrice.ToString()</div>
-                    
-                    <div class="quantity">
-                        <strong>@line.Quantity</strong><br>
+                    <div class="summary-delivery">
+                        <select name="delivery-collection" class="summary-delivery-selection">
+                            <option value="0" selected="selected">Select Collection or Delivery</option>
+                            <option value="collection">Hämta i Lagershop 0:-</option>
+
+                            <option value="first-class">
+                                PostNord Ombud 49:-
+                            </option>
+
+
+                            <option value="second-class">Hemleverans 149:-</option>
+                        </select>
                     </div>
+                    <div class="summary-total">
+                        <div class="total-title">Total</div>
+                        <div class="total-value final-value" id="basket-total">
 
-                    <div class="subtotal"> @((line.Quantity * line.Book.UnitPrice).ToString())</div>
-                }
-            </div>
-        </div>
-        <aside>
-            <div class="summary">
-                <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
-                <div class="summary-subtotal">
-                    <div class="subtotal-title">Subtotal</div>
-                    <div class="subtotal-value final-value" id="basket-subtotal">@Model.CartTotal.ToString("n2")</div>
-                    <div class="summary-promo hide">
-                        <div class="promo-title">Promotion</div>
-                        <div class="promo-value final-value" id="basket-promo"></div>
+                            @Model.CartTotal.ToString("n2")
+                        </div>
                     </div>
-                </div>
-                <div class="summary-delivery">
-                    <select name="delivery-collection" class="summary-delivery-selection">
-                        <option value="0" selected="selected">Select Collection or Delivery</option>
-                        <option value="collection">Hämta i Lagershop 0:-</option>
- 
-                        <option 
-                                value="first-class" >PostNord Ombud 49:-</option>
-
-
-                        <option value="second-class">Hemleverans 149:-</option>
-                    </select>
-                </div>
-                <div class="summary-total">
-                    <div class="total-title">Total</div>
-                    <div class="total-value final-value" id="basket-total">
-
-                        @Model.CartTotal.ToString("n2")
+                    <div class="summary-checkout">
+                         <input type="submit" class="btn btn-primary" value="Complete order" />
+                        <button id="cart-btn" asp-controller="Order" asp-action="Checkout" method="post" class="checkout-cta">Go to Secure Checkout</button>
                     </div>
                 </div>
-                <div class="summary-checkout">
-                    <button id="cart-btn" class="checkout-cta">Go to Secure Checkout</button>
-                </div>
-            </div>
-        </aside>
+            </aside>
+
+        </form>
     </main>
     
 </body>

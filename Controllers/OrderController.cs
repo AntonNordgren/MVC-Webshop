@@ -10,15 +10,15 @@ namespace MVC_Webshop.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly ShoppingCartActions _shoppingCart;
+        private readonly ShoppingCartActions _shoppingCartActions;
 
-        public OrderController(IOrderRepository orderRepository, ShoppingCartActions shoppingCart)
+        public OrderController(IOrderRepository orderRepository, ShoppingCartActions shoppingCartActions)
         {
             _orderRepository = orderRepository;
-            _shoppingCart = shoppingCart;
+            _shoppingCartActions = shoppingCartActions;
         }
 
-        // GET: /<controller>/
+        
         public IActionResult Checkout()
         {
             return View();
@@ -27,23 +27,23 @@ namespace MVC_Webshop.Controllers
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
-            var items = _shoppingCart.CartItems;
-            _shoppingCart.CartItems = items;
+            var items = _shoppingCartActions.GetCartItems();
+            _shoppingCartActions.CartItems = items;
 
-            if (_shoppingCart.CartItems.Count == 0)
+            if (_shoppingCartActions.CartItems.Count == 0)
             {
-                ModelState.AddModelError("", "Your cart is empty, add some Book first");
+                ModelState.AddModelError("", "To place an order,please add books to the cart");
             }
 
             if (ModelState.IsValid)
             {
                 _orderRepository.CreateOrder(order);
-                _shoppingCart.ClearCart();
-                return RedirectToAction("CheckoutComplete");
+                _shoppingCartActions.ClearCart();
+                return RedirectToAction("OrderReceived");
             }
             return View(order);
         }
-        // CheckoutComplete behövs eller inte
+        
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMessage = "Thanks for your order. Your book come efter 5 Days";
