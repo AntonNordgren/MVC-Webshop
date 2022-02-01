@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MVC_Webshop</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/cart.css" />
     
+
 </head>
 <body class="container">
     <header>
@@ -77,13 +79,18 @@
 
             <div class="navbar-second-container navbar navbar-expand p-0">
 
+                <div class="home-link">
+                    <a class="fa fa-home" style="font-size:30px;color:gray"
+                       asp-controller="Home" asp-action="Index">
+                    </a>
+                </div>
 
                 <div class="dropdown m-1">
                     <button class="btn shadow-none dropdown-toggle disabled"
                             type="button"
                             id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                        Kategorier
+                        Category
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="">
 

@@ -8,7 +8,7 @@
     background-color: #fff;
     color: #666;
     font-family: 'Open Sans', sans-serif;
-    font-size: 90.5%;
+    font-size: 100.5%;
     margin: 0 auto;
 }
 
@@ -80,7 +80,7 @@ button,
 
 main {
     clear: both;
-    font-size: 0.75rem;
+    font-size: 1.75rem;
     margin: 0 auto;
     overflow: hidden;
     padding: 1rem 0;
@@ -126,7 +126,7 @@ label {
 
 .promo-code-cta {
     border-radius: 4px;
-    font-size: 0.625rem;
+    font-size: 1.625rem;
     margin-left: 0.625rem;
     padding: 0.6875rem 1.25rem 0.625rem;
 }
@@ -220,7 +220,7 @@ li {
     background-color: #ccc;
     border: 1px solid #aaa;
     border-radius: 4px;
-    font-size: 0.625rem;
+    font-size: 1.625rem;
     padding: 2px;
     width: 3.75rem;
 }
@@ -244,7 +244,7 @@ aside {
 
 .summary-total-items {
     color: #666;
-    font-size: 0.875rem;
+    font-size: 1.875rem;
     text-align: center;
 }
 
@@ -309,7 +309,7 @@ aside {
 .checkout-cta {
     display: block;
     float: none;
-    font-size: 0.75rem;
+    font-size: 1.75rem;
     text-align: center;
     text-transform: uppercase;
     padding: 0.625rem 0;
@@ -321,7 +321,7 @@ aside {
     border: 1px solid #aaa;
     border-radius: 4px;
     display: block;
-    font-size: 0.625rem;
+    font-size: 1.625rem;
     height: 34px;
     width: 100%;
 }
