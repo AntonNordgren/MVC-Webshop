@@ -4,14 +4,16 @@ using MVC_Webshop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVC_Webshop.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220201081217_CustomUserDataForUser")]
+    partial class CustomUserDataForUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,51 +112,19 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0d1b3693-5f9f-48a0-9d7b-4c184b7f8337",
+                            Id = "1b0c1688-005c-4d3f-a464-4f5556d2362e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bfa44338-21a5-409a-ba56-45a1345281e8",
+                            ConcurrencyStamp = "ad7aa78c-d7d7-4c64-8544-d6ee49fb74f6",
                             Email = "admin@bookstore.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@BOOKSTORE.COM",
                             NormalizedUserName = "ADMIN@BOOKSTORE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE/qNI8w4ugpGbXVSuD4hWvxuXmQ1gEldf8lrlkgDzap5t7ZXZHah+ye9I6J23+WCA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKeW7B05dZ0G44sgVI5bPnpQ9pCUd3cPlrm7h+bPAYMm+yJNxwA1qIOlefnfk5biqw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6631b731-c5a7-4e37-9672-4306b7c1e71b",
+                            SecurityStamp = "bd956010-9406-4c58-bd56-bfe163ab7450",
                             TwoFactorEnabled = false,
                             UserName = "admin@bookstore.com"
-                        },
-                        new
-                        {
-                            Id = "5381cb1d-2283-4f09-a939-4c0de02ae5fd",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1168aa9c-02c7-4651-b750-6397b4332e89",
-                            Email = "user2@bookstore.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "USER2@BOOKSTORE.COM",
-                            NormalizedUserName = "USER2@BOOKSTORE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPWTg/MNks0RXUf6mj0Vwpx2HhVRTCICAZ1uKt5VCeUE10pN+AySZqAW3AMwasSQZQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "746b27f7-3d59-4e11-9064-4217f2f14aac",
-                            TwoFactorEnabled = false,
-                            UserName = "user2@bookstore.com"
-                        },
-                        new
-                        {
-                            Id = "cdc42382-2b44-4193-8f67-b6e621be4f3c",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "00a43696-b1d5-4cb9-953d-70115d76e502",
-                            Email = "user3@bookstore.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "USER3@BOOKSTORE.COM",
-                            NormalizedUserName = "USER3@BOOKSTORE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEr72sdNppodS8q0cjlSNKfrPmHta3BiHaaDN7M43w4RxCaVSTPNsekyGK9ZlUKp+w==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "b1178b98-e4be-4ab9-9d98-83a9152640ec",
-                            TwoFactorEnabled = false,
-                            UserName = "user3@bookstore.com"
                         });
                 });
 
@@ -405,15 +375,15 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "db9ea5cc-1a8c-42e7-b567-0acc289a63ba",
-                            ConcurrencyStamp = "17d0bd0c-6794-4a9b-86bf-1463c6494ee9",
+                            Id = "544e9d42-9c62-4503-b360-3e73abda19f6",
+                            ConcurrencyStamp = "3047de72-2215-45f5-948c-f7838553a622",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "a297ac74-8c6e-4d93-b2b7-a40c4e1d5fe4",
-                            ConcurrencyStamp = "ed578396-ca70-456c-b6de-7942f1d0876b",
+                            Id = "24f023cd-15a8-479b-98a9-d454d1ec4340",
+                            ConcurrencyStamp = "fe083fed-4d88-47af-9709-225c49bf8633",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -508,18 +478,8 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "0d1b3693-5f9f-48a0-9d7b-4c184b7f8337",
-                            RoleId = "db9ea5cc-1a8c-42e7-b567-0acc289a63ba"
-                        },
-                        new
-                        {
-                            UserId = "5381cb1d-2283-4f09-a939-4c0de02ae5fd",
-                            RoleId = "a297ac74-8c6e-4d93-b2b7-a40c4e1d5fe4"
-                        },
-                        new
-                        {
-                            UserId = "cdc42382-2b44-4193-8f67-b6e621be4f3c",
-                            RoleId = "a297ac74-8c6e-4d93-b2b7-a40c4e1d5fe4"
+                            UserId = "1b0c1688-005c-4d3f-a464-4f5556d2362e",
+                            RoleId = "544e9d42-9c62-4503-b360-3e73abda19f6"
                         });
                 });
 
