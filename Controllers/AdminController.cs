@@ -690,6 +690,7 @@ namespace MVC_Webshop.Controllers
                 }
             }
             _context.SaveChanges();
+            this.UpdateTotal(int.Parse(orderid));
             return RedirectToAction("EditOrder", new { Id = order.Id });
         }
 
@@ -712,9 +713,25 @@ namespace MVC_Webshop.Controllers
         {
             _context.OrderItems.RemoveRange(_context.OrderItems.Where(x => x.OrderId == int.Parse(orderid)));
             _context.SaveChanges();
-            
+            _context.Orders.RemoveRange(_context.Orders.Where(x => x.Id == int.Parse(orderid)));
+            _context.SaveChanges();
             return RedirectToAction("ListOrders", new { Id = userid });
         }
-
+        
+       
+        private void UpdateTotal(int orderid)
+        {
+            decimal total = 0;
+            foreach(var item in _context.OrderItems)
+            {
+                if (item.OrderId == orderid)
+                {
+                    total += item.UnitPrice * item.Quantity;
+                }
+            }
+            var order = _context.Orders.First(x => x.Id == orderid);
+            order.TotalCost = total;
+            _context.SaveChanges();
+        }
     }
 }
