@@ -4,14 +4,16 @@ using MVC_Webshop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVC_Webshop.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220201074913_CustomUserDataForUserFirstName")]
+    partial class CustomUserDataForUserFirstName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,17 +112,17 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1b0c1688-005c-4d3f-a464-4f5556d2362e",
+                            Id = "91b12048-798b-42cd-9f89-39183b98756b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ad7aa78c-d7d7-4c64-8544-d6ee49fb74f6",
+                            ConcurrencyStamp = "964776ae-c686-4667-ac91-b53742d1cbc7",
                             Email = "admin@bookstore.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@BOOKSTORE.COM",
                             NormalizedUserName = "ADMIN@BOOKSTORE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKeW7B05dZ0G44sgVI5bPnpQ9pCUd3cPlrm7h+bPAYMm+yJNxwA1qIOlefnfk5biqw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN8ik30dSAfM3F8fSKVEKwUd+tjd+fHoIeGMiEMlMIdzbvu2uN3Tb50XLMtDBeE2SA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bd956010-9406-4c58-bd56-bfe163ab7450",
+                            SecurityStamp = "c2102da8-2082-47eb-b46a-7cc28f825377",
                             TwoFactorEnabled = false,
                             UserName = "admin@bookstore.com"
                         });
@@ -373,15 +375,15 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "544e9d42-9c62-4503-b360-3e73abda19f6",
-                            ConcurrencyStamp = "3047de72-2215-45f5-948c-f7838553a622",
+                            Id = "ae09e4c3-58f7-47d1-841f-894b4c76178e",
+                            ConcurrencyStamp = "bb794825-4586-4f3a-a5e7-d2d320d27b24",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "24f023cd-15a8-479b-98a9-d454d1ec4340",
-                            ConcurrencyStamp = "fe083fed-4d88-47af-9709-225c49bf8633",
+                            Id = "54b45e21-8525-436a-a76c-fd30a18ced33",
+                            ConcurrencyStamp = "50fac679-592b-4f72-ade7-ff849bc9c68f",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -476,8 +478,8 @@ namespace MVC_Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "1b0c1688-005c-4d3f-a464-4f5556d2362e",
-                            RoleId = "544e9d42-9c62-4503-b360-3e73abda19f6"
+                            UserId = "91b12048-798b-42cd-9f89-39183b98756b",
+                            RoleId = "ae09e4c3-58f7-47d1-841f-894b4c76178e"
                         });
                 });
 

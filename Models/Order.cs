@@ -1,4 +1,5 @@
-﻿using MVC_Webshop.Data;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using MVC_Webshop.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Webshop.Models
 {
+    [BindNever]
     [Table("Order")]
     public class Order
     {

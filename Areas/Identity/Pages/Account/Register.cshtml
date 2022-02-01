@@ -27,36 +27,58 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <br />
+            <button type="submit" style="margin:7px;" class="btn btn-primary">Register</button>
+
+            <button type="button" style="margin:7px;" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","Home")'">Cancel</button>
+
+            <br />
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h4>Use another service to register.</h4>
+            <h4>The Challange... BookStore.com</h4>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
                         <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
+                            Welcome to BookStore Website. Please enter your email address and a password to register and have an account.
+                        </p>
+                        <p>
+                            For more information or support, please email us on support@bookstore.com
+                        </p>
+                        <p>
+                            <img src="~/img/Logo.png"
+                                 width="250"
+                                 class="logo" />
+                            
                         </p>
                     </div>
                 }
                 else
                 {
+
                     <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                         <div>
+
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
                                     <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
+                                    
+
+                                 }
+
                             </p>
                         </div>
+
                     </form>
+
+                    
                 }
+
             }
         </section>
     </div>
