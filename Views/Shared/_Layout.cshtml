@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MVC_Webshop</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-  
+
 
 
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/cart.css" />
-    
+
 </head>
 <body class="container">
     <header>
@@ -33,10 +33,10 @@
                         <form class="form-inline d-flex search-bar" method="get" asp-controller="Book" asp-action="SearchResult" asp-route-SearchText="SearchText">
                             @using (Html.BeginForm("SearchResult", "search", FormMethod.Get))
                             {
-                                <input id="SearchText"  class="form-control mr-sm-2" type="search" name="SearchText" placeholder="search" aria-label="Search">
-                                <button id="button" class="btn btn-secondary my-2 my-sm-0 m-1" type="submit" >Search</button>
+                                <input id="SearchText" class="form-control mr-sm-2" type="search" name="SearchText" placeholder="search" aria-label="Search">
+                                <button id="button" class="btn btn-secondary my-2 my-sm-0 m-1" type="submit">Search</button>
                             }
-                            
+
                         </form>
                     </div>
 
@@ -46,23 +46,23 @@
 
                         @*<ul class="navbar-nav icon-container">*@
                         @*<li class="nav-item">
-            <a href="#" class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                </svg>
-            </a>
-        </li>
+                                <a href="#" class="nav-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                </a>
+                            </li>
 
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                </svg>
-            </a>
-        </li>*@
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                    </svg>
+                                </a>
+                            </li>*@
 
-                        
+
 
 
 
@@ -96,18 +96,18 @@
                 </div>
 
                 <div>
-                   
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <p>Admin Account</p>
 
-                            <a asp-controller="Admin" asp-action="Index">Admin pages</a>
-                        }
-                        @if (User.IsInRole("User"))
-                        {
-                            <p> User Account</p>
-                        }
-                    
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <p>Admin Account</p>
+
+                        <a asp-controller="Admin" asp-action="Index">Admin pages</a>
+                    }
+                    @if (User.IsInRole("User"))
+                    {
+                        <p> User Account</p>
+                    }
+
                 </div>
 
 
@@ -122,7 +122,64 @@
     <div class="content p-2">
         @RenderBody()
     </div>
+   
+    
     <footer>
+            <h3 class="c-footer__header">Quick Finder</h3>
+            <div class="c-footer__row"></div>
+            <div class="c-footer__sitemap">
+                <ul class="c-sitemap c-sitemap--thirds">
+                    <li class="c-sitemap__list">
+                        <span class="c-sitemap__item c-sitemap__item--title"><a href="/" class="u-color--grey">Shop</a></span>
+            </div>
+            <div class="c-footer__row"></div>
+            <div class="c-footer__sitemap">
+                <ul class="c-sitemap c-sitemap--Forth">
+                    <li class="c-sitemap__list">
+                        <span class="c-sitemap__item c-sitemap__item--title"><a href="/Category/?Genre=Food" class="u-color--grey">Food</a></span>
+            </div>
+            <div class="c-footer__row"></div>
+            <div class="c-footer__sitemap">
+                <ul class="c-sitemap c-sitemap--Fifth">
+                    <li class="c-sitemap__list">
+                        <span class="c-sitemap__item c-sitemap__item--title"><a href="/Category/?Genre=Detective" class="u-color--grey">Detective</a></span>
+            </div>
+
+            <div class="c-footer__row"></div>
+            <div class="c-footer__sitemap">
+                <ul class="c-sitemap c-sitemap--Sixth">
+                    <li class="c-sitemap__list">
+                        <span class="c-sitemap__item c-sitemap__item--title"><a href="/Category/?Genre=Kids" class="u-color--grey">Kids</a></span>
+            </div>
+            <div align="right"
+             <h3 class="c-footer__header c-footer__header--small">You kan find us at</h3>
+        <p>
+            <a href="https://www.facebook.com"
+        <a svg viewbox="0 0 512 512" class="c-icon c-icon--lg u-color--green">
+            <use xlink:href="/assets/acf7fb07/icons/fb.svg#icon-fb" /></asvg> <span class="u-sr-only">Facebook</span>
+        </a>
+        <a href="https://www.Twitter.com"
+         <a svg viewbox="0 0 512 512" class="c-icon c-icon--lg u-color--green">
+            <use xlink:href="/assets/acf7fb07/icons/twitter.svg#icon-twitter" /></asvg> <span class="u-sr-only">Twitter</span>
+        </a>
+        <a href="https://www.Pinterest.com"
+        <a svg viewbox="0 0 512 512" class="c-icon c-icon--lg u-color--green">
+            <use xlink:href="/assets/acf7fb07/icons/pinterest.svg#icon-pinterest" /></asvg> <span class="u-sr-only">Pinterest</span>
+
+        </a>
+        </p>
+         </div>
+
+
+
+
+            <div class="c-footer__row"></div>
+            <div class="c-footer__sitemap">
+                &copy; @DateTime.Now - BookStore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+
+       
+
     </footer>
 
 
@@ -135,62 +192,71 @@
 
 
 
-@*<header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVC_Webshop</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - MVC_Webshop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>*@
+                @*<header>
+                        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                            <div class="container">
+                                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVC_Webshop</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                                    <ul class="navbar-nav flex-grow-1">
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </header>
+                    <div class="container">
+                        <main role="main" class="pb-3">
+                            @RenderBody()
+                        </main>
+                    </div>
+                    <footer class="border-top footer text-muted">
+                        <div class="container">
+                            &copy; 2022 - MVC_Webshop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </div>
+                    </footer>*@
 
-@*<div class="navbar-container navbar navbar-expand navbar-light bg-light">
-        <div class="navbar-section">
-            <img class="navbar-brand navbar-brand"
-                 src="https://static.thriftbooks.com/images/tblogo-green_20200225.svg"
-                 width="250" />
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <div class="icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                </svg>
-            </div>
-        </div>
-        <div class="navbar-section">
-            <ul class="nav">
-                <li class="nav-item">Kategorier</li>
-                <li class="nav-item">Top 10</li>
-                <li class="nav-item">Rea</li>
-            </ul>
-        </div>
-    </div>*@
+                @*<div class="navbar-container navbar navbar-expand navbar-light bg-light">
+                            <div class="navbar-section">
+                                <img class="navbar-brand navbar-brand"
+                                     src="https://static.thriftbooks.com/images/tblogo-green_20200225.svg"
+                                     width="250" />
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                                <div class="icon-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="navbar-section">
+                                <ul class="nav">
+                                    <li class="nav-item">Kategorier</li>
+                                    <li class="nav-item">Top 10</li>
+                                    <li class="nav-item">Rea</li>
+                                </ul>
+                            </div>
+
+                        <h3 class="c-footer__header">Quick Finder</h3>
+                    <div class="c-footer__row">
+                        <div class="c-footer__sitemap">
+                            <ul class="c-sitemap c-sitemap--thirds">
+                                <li class="c-sitemap__list">
+                                    <span class="c-sitemap__item c-sitemap__item--title"><a href="/" class="u-color--grey">Shop</a></span>
+
+                        </div>*@
+
