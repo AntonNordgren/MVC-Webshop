@@ -1,0 +1,16 @@
+﻿@model BookLayoutViewModel
+
+<div class="mb-2 mt-2">
+    @if (Model != null)
+    {
+        <div class="row">
+            <h3 class="text-secondary">@Model.CardLayoutTitle</h3>
+            @foreach (var Book in Model.Books)
+            {
+                <div class="col col-@Model.ColumnSize">
+                    <partial name="_BookCard" model=@Book />
+                </div>
+            }
+        </div>
+    }
+</div>
