@@ -38,7 +38,7 @@ namespace MVC_Webshop
             services.AddScoped<IBookRepository, BookRepository>();
             
             services.AddScoped<IGenreRepository, GenreRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
+          //  services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ShoppingCartActions>(ci => ShoppingCartActions.GetCart(ci));
 
           

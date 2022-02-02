@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Webshop.Controllers
 {
-    //[Authorize (Roles = "Admin")]
+    [Authorize (Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly BookStoreDbContext _context;
@@ -628,6 +628,8 @@ namespace MVC_Webshop.Controllers
         {
             OrderViewModel model=new OrderViewModel();
             model.Orders = _context.Orders.Where(x=>x.UserId==id).ToList();
+            model.Users = _context.Users.ToList();
+            //model.Order = _context.Orders.First(x => x.UserId == id);
             return View(model);
         }
         public IActionResult EditOrder(string id)

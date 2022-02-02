@@ -2,12 +2,40 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "";
 }
 @model OrderViewModel
-<h1>Order </h1>
-<table>
-@foreach(var item in Model.OrderItems)
-            {
-                <tr><td>@item.BookId</td> </tr>
-            }
+<h1>Order id:@Model.Order.Id</h1>
+<p>Name: @Model.Users.First(x => x.Id == Model.Order.UserId).FirstName @Model.Users.First(x => x.Id == Model.Order.UserId).LastName </p>
+<p>Email: @Model.Users.First(x => x.Id == Model.Order.UserId).Email</p>
+<p>Adress: @Model.Users.First(x => x.Id == Model.Order.UserId).Address , @Model.Users.First(x => x.Id == Model.Order.UserId).City, @Model.Users.First(x => x.Id == Model.Order.UserId).Country</p>
+<p>OrderDate: @Model.Order.OrderDate.ToString("yyyy-MM-dd")</p>
+
+<table class="table" style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">UNITPRICE</th>
+            <th scope="col">QUANTITY</th>
+            <th scope="col">TOTAL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+        <tr>
+            <td scope="row"> @item.BookId</td>
+            <td align="center">@Model.Books.First(x => x.Id == item.BookId).Isbn</td>
+            <td align="center">@Model.Books.First(x => x.Id == item.BookId).Title</td>
+            <td align="center">@item.UnitPrice</td>
+            <td align="center">@item.Quantity</td>
+            <td align="center">@(item.Quantity*item.UnitPrice)</td>
+
+
+        </tr>
+        }
+    </tbody>
 </table>
+<h2>Total: @Model.Order.TotalCost</h2>

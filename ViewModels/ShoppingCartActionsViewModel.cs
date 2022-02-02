@@ -10,6 +10,6 @@ namespace MVC_Webshop.ViewModels
     {
         public ShoppingCartActions ShoppingCartActions { get; set; }
         public decimal CartTotal { get; set; }
-
+       
     }
 }

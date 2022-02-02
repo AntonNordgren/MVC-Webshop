@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace MVC_Webshop.Models
 {
-    public interface IOrderRepository
-    {
-        void CreateOrder(Order order);
-    }
+    //public interface IOrderRepository
+    //{
+    //    void CreateOrder(Order order);
+    //}
 }

@@ -1,0 +1,83 @@
+﻿
+
+<h3>@ViewBag.OrderDoneMessage </h3>
+
+
+<h4>Order Summary</h4>
+
+@model ShoppingCartActionsViewModel
+@* -------------------------------------------------------- *@
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basket</title>
+    <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="~/css/payment.css" />
+
+</head>
+
+<body class="cart-body">
+    <main>
+        <div class="basket">
+
+            <div class="basket-labels">
+                <ul id="ul-basket">
+                    <li class="item item-heading">Item</li>
+                    <li class="price">Price</li>
+                    <li class="quantity">Quantity</li>
+                    <li class="subtotal">Subtotal</li>
+                </ul>
+            </div>
+
+            <div class="basket-product">
+                @foreach (var line in Model.ShoppingCartActions.CartItems)
+                {
+                <div class="summary-total">
+                    <div class="item">
+
+                        <div class="product-image">
+                            <img id="cart-img" src="@line.Book.ImageUrl" alt="Placholder Image 2" class="product-frame">
+
+                        </div>
+
+                        <div class="product-details">
+                            <h1 id="product-id"><strong><span class="item-quantity">@line.Quantity</span> X @line.Book.Title</strong> </h1>
+                            <p>
+                                Language: <strong>@line.Book.Language</strong><br>
+                                ISBN: <strong>@line.Book.Isbn</strong><br>
+                                Total Pages: <strong>@line.Book.TotalPage</strong>
+                            </p>
+
+                            <p class="stockStatus"> IN STOCK: <strong>@line.Book.Quantity</strong><br></p>
+
+                        </div>
+                    </div>
+                    <div class="price">@line.Book.UnitPrice.ToString()</div>
+
+                    <div class="quantity">
+                        <strong>@line.Quantity</strong><br>
+                    </div>
+
+                    <div class="subtotal"> @((line.Quantity * line.Book.UnitPrice).ToString())</div>
+                    </div>
+                        }
+                    </div>
+                </div>
+            <div class="summary-total">
+            <div class="total-title">Total</div>
+            <div class="total-value final-value" id="basket-total">
+                @(@Model.CartTotal.ToString("n2"))
+             
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+
+
