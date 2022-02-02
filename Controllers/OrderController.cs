@@ -31,7 +31,15 @@ namespace MVC_Webshop.Controllers
             _userManager = userManager;
             _bookStoreDbContext = bookStoreDbContext;
         }
-
+        public IActionResult Historia()
+        {
+            currentUserId = _userManager.GetUserId(User);
+            OrderViewModel model = new OrderViewModel();
+            model.Orders = _bookStoreDbContext.Orders.Where(x => x.UserId == currentUserId).ToList();
+            model.Users = _bookStoreDbContext.Users.ToList();
+            
+            return View(model);
+        }
         
         public IActionResult PlaceOrder()
         {

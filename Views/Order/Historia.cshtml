@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model OrderViewModel
+@if (@Model.Orders.Any())
+{
+    <h1>ORDERS for User: @Model.Users.First(x => x.Id == Model.Orders.First().UserId).Email </h1>
+}
+else
+{ <h1>No orders found</h1>}
+
+@foreach (var order in Model.Orders)
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            Order Id : @order.Id
+        </div>
+        
+            <div class="card-body">
+                <h5 class="card-title">
+                    @order.OrderDate
+                    
+                    
+                    
+                    <a class="btn btn-outline-primary" asp-controller="Pdfs" asp-action="Index" asp-route-id="@order.Id" style="float: right;">PDF</a>
+                </h5>
+
+            </div>
+        
+        <div class="card-footer">
+
+        </div>
+    </div>
+}
