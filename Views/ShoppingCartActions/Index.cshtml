@@ -10,12 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Basket</title>
     <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="~/css/payment.css" />
 
 </head>
 
 <body class="cart-body">
     <main>
-        <form asp-controller="Order" asp-action="Checkout" method="post" class="form-horizontal" role="form">
+        <form asp-controller="Order" asp-action="PlaceOrder" method="post" class="form-horizontal" role="form">
 
             <div class="basket">
                 <div class="basket-module">
@@ -34,37 +35,37 @@
 
 
                 <div class="basket-product">
-                    @foreach (var line in Model.ShoppingCartActions.CartItems)
-                    {
-                        <div class="item">
+                        @foreach (var line in Model.ShoppingCartActions.CartItems)
+                        {
+                            <div class="item">
 
-                            <div class="product-image">
-                                <img id="cart-img" src="@line.Book.ImageUrl" alt="Placholder Image 2" class="product-frame">
+                                <div class="product-image">
+                                    <img id="cart-img" src="@line.Book.ImageUrl" alt="Placholder Image 2" class="product-frame">
+                                </div>
+                                <div class="product-details">
+                                    <h1 id="product-id"><strong><span class="item-quantity">@line.Quantity</span> X @line.Book.Title</strong> </h1>
+                                    <p class="remove">
+                                        <a asp-controller="ShoppingCartActions" asp-action="RemoveFromCart" asp-route-bookId="@line.Book.Id">Remove</a>
+                                    </p>
+                                    <p>
+                                        Language: <strong>@line.Book.Language</strong><br>
+                                        ISBN: <strong>@line.Book.Isbn</strong><br>
+                                        Total Pages: <strong>@line.Book.TotalPage</strong>
+                                    </p>
+
+                                    <p class="stockStatus"> IN STOCK: <strong>@line.Book.Quantity</strong><br></p>
+
+
+                                </div>
                             </div>
-                            <div class="product-details">
-                                <h1 id="product-id"><strong><span class="item-quantity">@line.Quantity</span> X @line.Book.Title</strong> </h1>
-                                <p class="remove">
-                                    <a asp-controller="ShoppingCartActions" asp-action="RemoveFromCart" asp-route-bookId="@line.Book.Id">Remove</a>
-                                </p>
-                                <p>
-                                    Language: <strong>@line.Book.Language</strong><br>
-                                    ISBN: <strong>@line.Book.Isbn</strong><br>
-                                    Total Pages: <strong>@line.Book.TotalPage</strong>
-                                </p>
+                            <div class="price">@line.Book.UnitPrice.ToString()</div>
 
-                                <p class="stockStatus"> IN STOCK: <strong>@line.Book.Quantity</strong><br></p>
-
-
+                            <div class="quantity">
+                                <strong>@line.Quantity</strong><br>
                             </div>
-                        </div>
-                        <div class="price">@line.Book.UnitPrice.ToString()</div>
 
-                        <div class="quantity">
-                            <strong>@line.Quantity</strong><br>
-                        </div>
-
-                        <div class="subtotal"> @((line.Quantity * line.Book.UnitPrice).ToString())</div>
-                    }
+                            <div class="subtotal"> @((line.Quantity * line.Book.UnitPrice).ToString())</div>
+                        }
                 </div>
             </div>
             <aside>
@@ -79,36 +80,55 @@
                         </div>
                     </div>
                     <div class="summary-delivery">
-                        <select name="delivery-collection" class="summary-delivery-selection">
+                        <select id="Collection" onChange="update()" name="delivery-collection" class="summary-delivery-selection">
                             <option value="0" selected="selected">Select Collection or Delivery</option>
-                            <option value="collection">Hämta i Lagershop 0:-</option>
+                            <option value="0">Hämta i Lagershop 0:-</option>
 
-                            <option value="first-class">
-                                PostNord Ombud 49:-
-                            </option>
+                            <option value="0">PostNord Ombud 0:-</option>
 
-
-                            <option value="second-class">Hemleverans 149:-</option>
+                            <option value="0">Hemleverans 0:-</option>
                         </select>
+
                     </div>
                     <div class="summary-total">
                         <div class="total-title">Total</div>
                         <div class="total-value final-value" id="basket-total">
+                            @(@Model.CartTotal.ToString("n2"))
 
-                            @Model.CartTotal.ToString("n2")
                         </div>
                     </div>
                     <div class="summary-checkout">
-                         <input type="submit" class="btn btn-primary" value="Complete order" />
-                        <button id="cart-btn" asp-controller="Order" asp-action="Checkout" method="post" class="checkout-cta">Go to Secure Checkout</button>
+
+                        <button id="cart-btn" type="submit" asp-controller="Order" asp-action="Payment" method="post" class="checkout-cta">Go to Secure Checkout</button>
+
                     </div>
                 </div>
             </aside>
 
         </form>
+            @* -------------------------------------------------------- *@
+
+
+
+
     </main>
-    
+    <script type="text/javascript">
+        function update() {
+            var select = document.getElementById('Collection');
+            var option = select.options[select.selectedIndex];
+
+            document.getElementById('shippingCost').value = option.value;
+            document.getElementById('text').value = option.text;
+
+        }
+
+        update();
+    </script>
+   
+
+
 </body>
 
 </html>
-@* -------------------------------------------------------- *@
+
+

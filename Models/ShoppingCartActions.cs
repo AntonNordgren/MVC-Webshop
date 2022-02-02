@@ -104,14 +104,16 @@ namespace MVC_Webshop.Models
         // Get All the cart items
         public List<CartItem> GetCartItems()
         {
-            return CartItems ??=
-           _bookStoreDbContext.CartItems.Where(c => c.CartId == CartId)
-               .Include(s => s.Book)
-               .ToList();
+
+            return CartItems ??
+                  (CartItems = _bookStoreDbContext.CartItems
+                  .Where(ci => ci.CartId == CartId)
+                  .Include(b => b.Book)
+                  .ToList());
         }
 
         // Empty the shopping cart
-        public void ClearCart()
+        public void CleanCart()
         {
             var cartItems = _bookStoreDbContext.CartItems
              .Where(c => c.CartId == CartId);
