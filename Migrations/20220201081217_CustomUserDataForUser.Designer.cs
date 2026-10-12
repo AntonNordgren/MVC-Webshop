@@ -13,7 +13,7 @@ namespace MVC_Webshop.Migrations
     [Migration("20220201081217_CustomUserDataForUser")]
     partial class CustomUserDataForUser
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
